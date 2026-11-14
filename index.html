@@ -9,6 +9,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Mes souhaits">
 <meta name="theme-color" content="#d9ecff">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
 <style>
 html,body{margin:0;height:100%}
 body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:linear-gradient(180deg,#d9ecff,#e4dcff);color:#1d2a4a;-webkit-text-size-adjust:100%}
@@ -104,6 +106,16 @@ function showList(){
     if(f)shrink(f,380,0.78,go);else go("")};
   kidRender()}
 
+
+let DP=null;window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();DP=e});
+if(!(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)&&!navigator.standalone){
+const ib=document.createElement("button");ib.id="kd_inst";ib.textContent="📲 Installer l’appli";
+ib.style.cssText="position:fixed;left:14px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:9000;border:0;border-radius:22px;padding:12px 16px;font-size:15px;font-weight:700;color:#5a3fc0;background:#fff;box-shadow:0 6px 18px rgba(80,90,180,.25);cursor:pointer";
+ib.onclick=async()=>{
+ if(DP){DP.prompt();try{await DP.userChoice}catch(e){}DP=null;return}
+ const ios=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+ alert(ios?"Pour installer :\n1) Appuie sur Partager (le carré avec la flèche)\n2) Choisis « Sur l’écran d’accueil »\n3) Ajouter":"Pour installer :\n1) Appuie sur les 3 points ⋮ en haut à droite de Chrome\n2) Choisis « Installer l’application » ou « Ajouter à l’écran d’accueil »\n3) Confirme")};
+document.body.appendChild(ib)}
 window.__kidRender=kidRender;
 icon();
 if(K)showList();else showPin();
