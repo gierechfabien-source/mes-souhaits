@@ -8,6 +8,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Parents">
 <meta name="theme-color" content="#f3f6ff">
+<link rel="manifest" href="manifest-parents.webmanifest">
+<link rel="icon" type="image/svg+xml" href="icon-parents.svg">
 <style>
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#f3f6ff;color:#1d2a4a;padding:18px 14px 40px}
 main{max-width:640px;margin:0 auto}
@@ -72,6 +74,17 @@ function paint(){const P=extras.map(pend).filter(Boolean).sort((a,b)=>b.at-a.at)
  h+=rows.length?rows.join(""):'<p class="empty">Pas encore de souhait</p>';
  document.getElementById("out").innerHTML=h;
  document.querySelectorAll(".send[data-u]").forEach(b=>b.onclick=()=>share(b.dataset.u,b.dataset.t))}
+let DP=null;window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();DP=e});
+try{const c=document.createElement("canvas");c.width=c.height=180;const x=c.getContext("2d");const gr=x.createLinearGradient(0,0,180,180);gr.addColorStop(0,"#4f8dff");gr.addColorStop(1,"#9b7bff");x.fillStyle=gr;x.fillRect(0,0,180,180);x.fillStyle="#fff";x.beginPath();x.moveTo(90,34);x.lineTo(148,82);x.lineTo(148,142);x.lineTo(32,142);x.lineTo(32,82);x.closePath();x.fill();x.fillStyle="#ff5fa2";x.beginPath();x.moveTo(90,130);x.bezierCurveTo(58,110,52,92,62,82);x.bezierCurveTo(70,74,84,78,90,88);x.bezierCurveTo(96,78,110,74,118,82);x.bezierCurveTo(128,92,122,110,90,130);x.fill();
+const l=document.createElement("link");l.rel="apple-touch-icon";l.href=c.toDataURL("image/png");document.head.appendChild(l)}catch(e){}
+if(!(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)&&!navigator.standalone){
+const ib=document.createElement("button");ib.textContent="📲 Installer l’appli";
+ib.style.cssText="position:fixed;right:14px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:9000;border:0;border-radius:22px;padding:13px 18px;font-size:15px;font-weight:800;color:#fff;background:linear-gradient(135deg,#4f8dff,#9b7bff);box-shadow:0 6px 18px rgba(80,90,180,.35);cursor:pointer";
+ib.onclick=async()=>{
+ if(DP){DP.prompt();try{await DP.userChoice}catch(e){}DP=null;return}
+ const ios=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+ alert(ios?"Pour installer :\n1) Appuie sur Partager (le carré avec la flèche)\n2) Choisis « Sur l’écran d’accueil »\n3) Ajouter":"Pour installer :\n1) Appuie sur les 3 points ⋮ en haut à droite de Chrome\n2) Choisis « Installer l’application » ou « Ajouter à l’écran d’accueil »\n3) Confirme")};
+document.body.appendChild(ib)}
 paint();
 </script>
 </body>
