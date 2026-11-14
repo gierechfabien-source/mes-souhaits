@@ -28,9 +28,9 @@ F.onSnapshot(F.collection(fs,"extras"),x=>{extras=x.docs.map(d=>Object.assign({i
 F.onSnapshot(F.collection(fs,"items"),x=>{items=x.docs.map(d=>Object.assign({id:d.id},d.data()));window.__kidRender&&window.__kidRender()},()=>{})}catch(e){}})();
 (function(){
 const CATS={noel:"🎄 Noël",anniv:"🎂 Anniversaire",envie:"💖 Envie"};
-const KIDS={lilou:"Lilou",mahily:"Mahily"};
+const KIDS={lilou:"Lilou",mahily:"Mahily",didi:"Didi"};
 const hh=t=>{let a=5381;for(const c of "kid|"+t)a=((a<<5)+a+c.charCodeAt(0))>>>0;return String(a)};
-const WHO={"3221070337":"lilou","3221107392":"mahily"};
+const WHO={"3221070337":"lilou","3221107392":"mahily","3221108454":"didi"};
 const safeUrl=u=>u&&/^https:\/\//i.test(u)?u:null;
 const isW=x=>x&&typeof x.name==="string"&&x.name.indexOf("souhait:")===0;
 const parseW=x=>{let o={};try{o=JSON.parse(x.url||"{}")||{}}catch(e){}
@@ -48,7 +48,7 @@ function kidRender(){
   if(!ws.length){L.innerHTML='<p style="text-align:center;opacity:.75;margin:30px 10px">Appuie sur le <b>+</b> pour ajouter ton premier souhait ✨</p>';return}
   ws.forEach(w=>{const d=document.createElement("div");
     d.style.cssText="display:flex;gap:12px;align-items:center;background:#fff;border-radius:18px;padding:10px;margin:10px 0;box-shadow:0 4px 14px rgba(80,90,180,.12)";
-    d.innerHTML=thumb(w)+'<div style="flex:1;min-width:0"><div style="font-weight:700;overflow-wrap:anywhere">'+esc(w.n)+'</div>'+(w.p?'<div style="color:#e8478b;font-weight:700">'+esc(w.p)+'</div>':'')+'<div style="font-size:13px;opacity:.75">'+(w.c?CATS[w.c]+' · ':'')+(w.ok?'✅ Accepté par les parents !':'💌 Les parents vont regarder')+'</div></div>';
+    d.innerHTML=thumb(w)+'<div style="flex:1;min-width:0"><div style="font-weight:700;overflow-wrap:anywhere">'+esc(w.n)+'</div>'+(w.p?'<div style="color:#e8478b;font-weight:700">'+esc(w.p)+'</div>':'')+'<div style="font-size:13px;opacity:.75">'+(w.c?CATS[w.c]+' · ':'')+(K==="didi"?'📋 Dans ta liste':(w.ok?'✅ Accepté par les parents !':'💌 Les parents vont regarder'))+'</div></div>';
     L.appendChild(d)})}
 
 function icon(){try{const c=document.createElement("canvas");c.width=c.height=180;const x=c.getContext("2d");const gr=x.createLinearGradient(0,0,180,180);gr.addColorStop(0,"#e8478b");gr.addColorStop(1,"#9b7bff");x.fillStyle=gr;x.fillRect(0,0,180,180);x.textAlign="center";x.textBaseline="middle";x.font="96px serif";x.fillText("\u{1F381}",90,92);x.font="34px serif";x.fillText("✨",148,34);
@@ -86,7 +86,7 @@ function showList(){
    +'<label><b>Le lien</b> (copié depuis Internet)</label><input id="kd_l" inputmode="url" autocapitalize="off" placeholder="https://…" style="'+I+'">'
    +'<label><b>Ou une photo</b></label><input id="kd_f" type="file" accept="image/*" style="'+I+'">'
    +'<label><b>Le prix</b> (si tu le sais)</label><input id="kd_p" maxlength="20" placeholder="Ex : 19,99 €" style="'+I+'">'
-   +'<button id="kd_ok" style="width:100%;padding:15px;border:0;border-radius:14px;font-size:18px;font-weight:700;color:#fff;background:linear-gradient(135deg,#e8478b,#9b7bff);cursor:pointer">Envoyer aux parents 💌</button>'
+   +'<button id="kd_ok" style="width:100%;padding:15px;border:0;border-radius:14px;font-size:18px;font-weight:700;color:#fff;background:linear-gradient(135deg,#e8478b,#9b7bff);cursor:pointer">'+(K==="didi"?"Ajouter à ma liste 💌":"Envoyer aux parents 💌")+'</button>'
    +'<button id="kd_no" style="width:100%;padding:12px;border:0;background:none;font-size:16px;margin-top:6px;color:#5a6a9a;cursor:pointer">Annuler</button></div>';
   document.body.appendChild(sh);
   const paint=()=>sh.querySelectorAll(".kd_chip").forEach(b=>{const on=b.dataset.c===cat;b.style.borderColor=on?"#9b7bff":"#d9e2ff";b.style.background=on?"#efe9ff":"#fff"});
@@ -101,7 +101,7 @@ function showList(){
     const b=g("kd_ok");b.disabled=true;
     const go=async img=>{
       try{await db.collection("extras").add({name:"souhait:"+K,gift:n,url:JSON.stringify({l:l,i:img||"",p:p,c:cat}),at:Date.now()});
-        g("kd_n").value="";g("kd_l").value="";g("kd_p").value="";g("kd_f").value="";sh.style.display="none";alert("C’est envoyé aux parents ! 🎄")}
+        g("kd_n").value="";g("kd_l").value="";g("kd_p").value="";g("kd_f").value="";sh.style.display="none";alert(K==="didi"?"C’est ajouté à ta liste ! 🎁":"C’est envoyé aux parents ! 🎄")}
       catch(e){alert("Oups, ça n’a pas marché. Réessaie.")}
       b.disabled=false};
     if(f)shrink(f,380,0.78,go);else go("")};
