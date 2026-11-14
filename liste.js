@@ -14,13 +14,14 @@ const sty=()=>{st.textContent="*{box-sizing:border-box}body{margin:0;font-family
 document.head.appendChild(st);
 document.title=T.n+" 🎁";
 document.body.innerHTML='<header><div class="r"><img src="'+T.icon+'" alt=""><div><h1>'+T.n+' 🎁</h1><p id="sub">Les idées cadeaux</p></div></div></header><main><div class="tabs" id="tabs"></div><div id="list"></div></main>';
-let items=[],picks={},cur=Q.get("o")||"",db=null;
+let items=[],picks={},cur=Q.get("o")||"",db=null,userSel=!!cur;
 function occs(){return items.filter(x=>x.occ==="meta"&&x.kid===KID&&!x.del).sort((a,b)=>String(a.d||"").localeCompare(String(b.d||"")))}
 function paint(){
  const O=occs();const ids=O.map(o=>o.oid);
- if(!cur||ids.indexOf(cur)<0)cur=ids[0]||"";
+ if(userSel&&ids.indexOf(cur)<0)userSel=false;
+ if(!userSel){const w=O.find(o=>items.some(x=>x.occ===o.oid&&!x.del));cur=(w||O[0]||{}).oid||""}
  $("tabs").innerHTML=O.length>1?O.map(o=>'<button class="tab'+(o.oid===cur?" on":"")+'" data-o="'+esc(o.oid)+'">'+esc(o.n)+'</button>').join(""):"";
- document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{cur=b.dataset.o;paint()});
+ document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{cur=b.dataset.o;userSel=true;paint()});
  const meta=O.find(o=>o.oid===cur);
  $("sub").textContent=meta?meta.n:"Les idées cadeaux";
  const L=items.filter(x=>x.occ===cur&&!x.del).sort((a,b)=>(a.at||0)-(b.at||0));
