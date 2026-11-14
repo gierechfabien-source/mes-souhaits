@@ -27,7 +27,7 @@ function paint(){
  const L=items.filter(x=>x.occ===cur&&!x.del).sort((a,b)=>(a.at||0)-(b.at||0));
  if(!L.length){$("list").innerHTML='<p class="empty">La liste arrive bientôt 🎁</p>';return}
  $("list").innerHTML=L.map(x=>{const pk=picks[cur+"__"+x.id];const price=(typeof x.p==="number"&&x.p>0)?x.p.toFixed(2).replace(".",",")+" €":"";const u=safe(x.u);
-  return '<div class="g'+(pk?" done":"")+'"><div class="th">'+(typeof x.img==="string"&&x.img.indexOf("data:image/")===0?'<img src="'+x.img+'" alt="">':"🎁")+'</div><div class="t"><b>'+esc(x.n||"")+'</b>'+(price?'<span class="pr">'+price+'</span> ':"")+(u?'<a href="'+esc(u)+'" target="_blank" rel="noopener">Voir le produit</a>':"")+'</div>'+(pk?'<button class="take no" disabled>✅ Réservé</button>':'<button class="take" data-id="'+esc(x.id)+'">Je le prends</button>')+'</div>'}).join("");
+  return '<div class="g'+(pk?" done":"")+'"><div class="th">'+(typeof x.img==="string"&&/^(data:image\/|https:\/\/)/.test(x.img)?'<img src="'+x.img.replace(/"/g,"&quot;")+'" alt="" referrerpolicy="no-referrer" loading="lazy">':"🎁")+'</div><div class="t"><b>'+esc(x.n||"")+'</b>'+(price?'<span class="pr">'+price+'</span> ':"")+(u?'<a href="'+esc(u)+'" target="_blank" rel="noopener">Voir le produit</a>':"")+'</div>'+(pk?'<button class="take no" disabled>✅ Réservé</button>':'<button class="take" data-id="'+esc(x.id)+'">Je le prends</button>')+'</div>'}).join("");
  document.querySelectorAll(".take[data-id]").forEach(b=>b.onclick=()=>take(b.dataset.id));
 }
 async function take(id){
