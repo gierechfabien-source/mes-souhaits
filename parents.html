@@ -132,7 +132,7 @@ const CT={noel:"Noël",anniv:"Anniversaire",envie:"Envie"};
 const LN={m:"Chez Maman",p:"Chez Papa"};
 const EM={noel:"🎄",anniv:"🎂"};
 const MON=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
-const BIRTH={lilou:[2017,6,11],mahily:[2014,12,22]};
+const BIRTH={lilou:[2017,6,11],mahily:[2014,12,22],didi:[1992,11,18]};
 const pad=n=>String(n).padStart(2,"0");
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const safe=u=>u&&/^https:\/\//i.test(u)?u:"";
@@ -149,7 +149,7 @@ const nextYear=(kid,type)=>{const t=todayS(),Y=+t.slice(0,4),d=defOcc(kid,type,Y
 const metas=()=>items.filter(x=>x.occ==="meta"&&!x.del&&KIDS[x.kid]).map(x=>({oid:x.id.replace(/^occ_/,""),kid:x.kid,type:x.type,y:x.y,d:x.d||"",n:x.n||x.id}));
 const giftsOf=oid=>items.filter(x=>x.occ===oid&&!x.del).sort((a,b)=>(a.at||0)-(b.at||0));
 const resOf=oid=>giftsOf(oid).filter(g=>picks[oid+"__"+g.id]).length;
-const SLOTS={lilou:[defOcc("lilou","anniv",2027)],mahily:[defOcc("mahily","noel",2026),defOcc("mahily","anniv",2026)]};
+const SLOTS={lilou:[defOcc("lilou","anniv",2027)],mahily:[defOcc("mahily","noel",2026),defOcc("mahily","anniv",2026)],didi:[defOcc("didi","anniv",2026)]};
 function pend(x){if(!x||typeof x.name!=="string"||x.name.indexOf("souhait:")!==0)return null;let o={};try{o=JSON.parse(x.url||"{}")||{}}catch(e){}
  return{id:x.id,kid:x.name.slice(8),n:String(x.gift||""),i:(typeof o.i==="string"&&o.i.indexOf("data:image/")===0)?o.i:"",p:String(o.p||""),l:safe(o.l),c:o.c||"",at:x.at||0}}
 function acc(x){if(x.occ==="meta"||x.occ==="prof"||x.del)return null;let kid=x.from;const s=String(x.s||"");if(!kid){const m=/Idée de (Lilou|Mahily)/.exec(s);if(m)kid=m[1].toLowerCase()}
@@ -195,7 +195,8 @@ function paint(){
  ["lilou","mahily"].concat(Object.keys(KC).filter(k=>KC[k].prof)).forEach(sec);
  if(owner)h+='<button class="add" id="newp">👤 Ajouter un profil</button>';
  h+='<h2><span class="dot" style="background:#9b7bff"></span>Didi</h2>';
- h+=occ("🎁","La liste de Didi",D.length+" idée"+(D.length>1?"s":""),O+"/mes-souhaits/didi.html","🎁 La liste d’idées cadeaux de Didi est prête ! Tu peux réserver un cadeau ici :");
+ cardsOf("didi").forEach(o=>{h+=cardHtml(o)});if(owner)h+='<button class="add" data-new="didi">＋ Nouvelle occasion pour Didi</button>';
+ h+=occ("🎁","Les idées de Didi",D.length+" idée"+(D.length>1?"s":""),O+"/mes-souhaits/didi.html","🎁 La liste d’idées cadeaux de Didi est prête ! Tu peux réserver un cadeau ici :");
  D.forEach(w=>{h+=row(w,["d","📋 Dans sa liste"],owner?'<div class="act"><button class="bd" data-del="'+w.id+'">🗑 Retirer</button></div>':'')});
  h+='<button class="add" data-idea="didi">＋ Ajouter une idée à la liste de Didi</button>';
  h+='<h2>💌 Souhaits des filles</h2>';
