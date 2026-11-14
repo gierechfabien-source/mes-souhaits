@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Les filles – Parents</title>
+<title>P'tits Papiers</title>
 <meta name="robots" content="noindex,nofollow">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Parents">
+<meta name="apple-mobile-web-app-title" content="Papiers">
 <meta name="theme-color" content="#0b3b2e">
 <link rel="manifest" href="manifest-parents.webmanifest">
 <link rel="icon" type="image/svg+xml" href="icon-parents.svg">
@@ -59,6 +59,22 @@ h2{font:600 18px Georgia,serif;margin:22px 4px 8px;display:flex;align-items:cent
 #sh .b{background:#fff;width:100%;max-width:520px;border-radius:24px 24px 0 0;padding:20px 18px calc(20px + env(safe-area-inset-bottom));max-height:92vh;overflow:auto}
 #sh input{width:100%;padding:12px;border:2px solid #dfe8e3;border-radius:12px;font-size:16px;margin:4px 0 12px;font-family:inherit}
 #sh .go{width:100%;padding:15px;border:0;border-radius:14px;font-size:17px;font-weight:700;color:#fff;background:linear-gradient(135deg,#1a8a68,#0e4a38);cursor:pointer}
+.bv{background:#1a8a68}.mg{border:0;width:100%;cursor:pointer;font-family:inherit}
+#sm,#sx{display:none;position:fixed;inset:0;background:rgba(6,40,31,.55);align-items:flex-end;justify-content:center}
+#sm{z-index:9000}#sx{z-index:10001}#sh{z-index:10002}
+#smb,#sxb{background:#f6f1e7;width:100%;max-width:560px;border-radius:24px 24px 0 0;padding:18px 14px calc(22px + env(safe-area-inset-bottom));max-height:92vh;overflow:auto}
+#sxb{background:#fff;padding:20px 18px calc(20px + env(safe-area-inset-bottom))}
+.mh{display:flex;align-items:center;gap:10px;margin-bottom:12px}.mh .t b{font:600 18px Georgia,serif;color:#0e4a38}
+.xx{border:0;background:#e6dfcd;border-radius:50%;width:36px;height:36px;font-size:16px;cursor:pointer;color:#0e4a38}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.chip{flex:1 1 100%;border:2px solid #dfe8e3;background:#fff;border-radius:14px;padding:12px 14px;font-weight:700;font-size:14.5px;color:#0e4a38;cursor:pointer;text-align:left;font-family:inherit}
+.chip small{display:block;font-weight:500;opacity:.65;margin-top:2px}.chip.new{border-style:dashed;background:#f1f6f3}.chip.on{border-color:#1a8a68;background:#e5f4ec}
+.chip.sm{flex:0 0 auto;padding:8px 12px;font-size:18px;border-radius:12px}.xx.ep{margin-left:auto;width:30px;height:30px;font-size:13px}.idea{margin-top:6px;border-style:solid;border-color:#e3dccb;background:#fbf8f0}
+.prev{color:#0e4a38;font-weight:700;margin:2px 0 14px}
+.go{width:100%;padding:15px;border:0;border-radius:14px;font-size:17px;font-weight:700;color:#fff;background:linear-gradient(135deg,#1a8a68,#0e4a38);cursor:pointer}
+.cx{width:100%;padding:12px;border:0;background:none;font-size:16px;margin-top:6px;color:#5a6a6a;cursor:pointer;font-family:inherit}
+#sx input{width:100%;padding:12px;border:2px solid #dfe8e3;border-radius:12px;font-size:16px;margin:4px 0 12px;font-family:inherit}
+#smb .act button{white-space:normal}
 </style>
 </head>
 <body class="wait">
@@ -66,7 +82,7 @@ h2{font:600 18px Georgia,serif;margin:22px 4px 8px;display:flex;align-items:cent
 <section id="land">
 <img class="logo" src="icon-parents.svg" alt="">
 <span class="gold"></span>
-<h1>Les filles</h1>
+<h1>P'tits Papiers</h1>
 <p class="tag">Les listes de cadeaux et les souhaits de la famille, au même endroit.</p>
 <button class="btn g" id="lg"><svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.6 5.9c4.4-4.1 7-10.1 7-17.6z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.5-.8-3-.8-4.7s.3-3.2.8-4.7l-7.9-6.1C.9 16.4 0 20.1 0 24s.9 7.6 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.6-5.9c-2.1 1.4-4.9 2.3-8.3 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>Continuer avec Google</button>
 <button class="btn i" id="li">📲 Installer l’appli</button>
@@ -74,18 +90,21 @@ h2{font:600 18px Georgia,serif;margin:22px 4px 8px;display:flex;align-items:cent
 <div class="foot">Espace réservé à la famille</div>
 </section>
 <div id="app">
-<header class="top"><img src="icon-parents.svg" alt=""><div class="tt"><b>Les filles</b><small id="who">Parents</small></div><button class="auth" id="au">Déconnexion</button></header>
+<header class="top"><img src="icon-parents.svg" alt=""><div class="tt"><b>P'tits Papiers</b><small id="who">Parents</small></div><button class="auth" id="au">Déconnexion</button></header>
 <main><div id="out"></div></main>
 </div>
-<div id="sh"><div class="b"><h2 style="margin:0 0 12px">🎁 Une idée pour ma liste</h2>
+<div id="sh"><div class="b"><h2 id="shT" style="margin:0 0 12px">🎁 Une idée</h2>
 <label><b>Le nom du cadeau</b></label><input id="n" maxlength="80" placeholder="Ex : Parfum…">
 <label><b>Le lien</b> (si tu en as un)</label><input id="l" inputmode="url" autocapitalize="off" placeholder="https://…">
 <label><b>Ou une photo</b></label><input id="f" type="file" accept="image/*">
 <label><b>Le prix</b> (si tu le sais)</label><input id="p" maxlength="20" placeholder="Ex : 59 €">
-<button class="go" id="ok">Ajouter à ma liste 💌</button>
-<button id="no" style="width:100%;padding:12px;border:0;background:none;font-size:16px;margin-top:6px;color:#5a6a9a;cursor:pointer">Annuler</button></div></div>
+<button class="go" id="ok">Ajouter 💌</button>
+<button id="no" class="cx">Annuler</button></div></div>
+<div id="sm"><div id="smb"></div></div>
+<div id="sx"><div id="sxb"></div></div>
 <script>
-let extras=[],items=[],owner=false,FB=null,user=undefined;
+let extras=[],items=[],picks={},owner=false,FB=null,user=undefined,mgr=null,fctx=null,dctx=null;
+const OWN=[1357359238,2617224859];
 const hh=t=>{let a=5381;for(const c of t)a=((a<<5)+a+c.charCodeAt(0))>>>0;return a};
 const FBC={"apiKey":"AIzaSyBYNEjVg4wrSLJRo6wMXl_Hd9lb2JDeHO0","authDomain":"liste-noel-lilou.firebaseapp.com","projectId":"liste-noel-lilou","storageBucket":"liste-noel-lilou.firebasestorage.app","messagingSenderId":"1037196943479","appId":"1:1037196943479:web:540fcf7d56f238043a2672"};
 (async()=>{try{
@@ -94,72 +113,219 @@ const F=await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-firest
 const U=await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js");
 const app=A.initializeApp(FBC);const fs=F.getFirestore(app);const au=U.getAuth(app);
 const prov=new U.GoogleAuthProvider();
-FB={add:(c,d)=>F.addDoc(F.collection(fs,c),d),set:(c,id,d)=>F.setDoc(F.doc(fs,c,id),d),del:(c,id)=>F.deleteDoc(F.doc(fs,c,id)),
+FB={add:(c,d)=>F.addDoc(F.collection(fs,c),d),set:(c,id,d,m)=>m?F.setDoc(F.doc(fs,c,id),d,{merge:true}):F.setDoc(F.doc(fs,c,id),d),del:(c,id)=>F.deleteDoc(F.doc(fs,c,id)),
  signIn:async()=>{try{await U.signInWithPopup(au,prov)}catch(e){await U.signInWithRedirect(au,prov)}},signOut:()=>U.signOut(au)};
-U.onAuthStateChanged(au,u=>{user=u||null;owner=!!(u&&u.emailVerified&&hh(String(u.email||"").toLowerCase())===1357359238);paint()});
+U.onAuthStateChanged(au,u=>{user=u||null;owner=!!(u&&u.emailVerified&&OWN.includes(hh(String(u.email||"").toLowerCase())));paint()});
 F.onSnapshot(F.collection(fs,"extras"),s=>{extras=s.docs.map(d=>Object.assign({id:d.id},d.data()));paint()});
-F.onSnapshot(F.collection(fs,"items"),s=>{items=s.docs.map(d=>d.data());paint()});
+F.onSnapshot(F.collection(fs,"items"),s=>{items=s.docs.map(d=>Object.assign({id:d.id},d.data()));paint()});
+F.onSnapshot(F.collection(fs,"picks"),s=>{const o={};s.docs.forEach(d=>{o[d.id]=d.data()});picks=o;paint()});
 }catch(e){console.error(e);user=null;paint()}})();
 
 const O=location.origin;
-const KIDS={lilou:"Lilou",mahily:"Mahily",didi:"Didi"};
+const BK={lilou:{n:"Lilou",c:"#4f8dff",e:"🎀"},mahily:{n:"Mahily",c:"#ff7eb6",e:"🎀"},didi:{n:"Didi",c:"#9b7bff",e:"🎁"}};
+let KIDS={},KC={};
+function rebuild(){KIDS={};KC={};for(const k in BK){KIDS[k]=BK[k].n;KC[k]=BK[k]}
+ items.filter(x=>x.occ==="prof"&&!x.del).forEach(x=>{const id=String(x.id).replace(/^prof_/,"");if(!BK[id]){KIDS[id]=String(x.n||id);KC[id]={n:KIDS[id],c:x.c||"#2f8f6c",e:x.e||"🎁",bd:x.bd||"",prof:1}}})}
+const birth=k=>{if(BIRTH[k])return BIRTH[k];const b=KC[k]&&KC[k].bd;const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(b||"");return m?[+m[1],+m[2],+m[3]]:null};
 const CL={noel:"🎄 Noël",anniv:"🎂 Anniversaire",envie:"💖 Envie"};
 const CT={noel:"Noël",anniv:"Anniversaire",envie:"Envie"};
 const LN={m:"Chez Maman",p:"Chez Papa"};
+const EM={noel:"🎄",anniv:"🎂"};
+const MON=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+const BIRTH={lilou:[2017,6,11],mahily:[2014,12,22]};
+const pad=n=>String(n).padStart(2,"0");
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const safe=u=>u&&/^https:\/\//i.test(u)?u:"";
 const $=id=>document.getElementById(id);
+const num=s=>{const p=parseFloat(String(s==null?"":s).replace(",",".").replace(/[^\d.]/g,""));return isNaN(p)?null:p};
+const todayS=()=>{if(window.__TODAY)return window.__TODAY;const d=new Date();return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())};
+const fmtP=p=>(typeof p==="number"&&p>0)?(Math.round(p*100)/100).toString().replace(".",",")+" €":"";
+const fmtD=t=>t?new Date(t).toLocaleDateString("fr-FR",{day:"numeric",month:"short"}):"";
+function defOcc(kid,type,y){
+ if(type==="noel")return{oid:kid+"_noel"+y,kid,type,y,d:y+"-12-25",n:"Noël "+y};
+ const b=birth(kid);if(!b)return null;
+ return{oid:kid+"_anniv"+y,kid,type:"anniv",y,d:y+"-"+pad(b[1])+"-"+pad(b[2]),n:"Anniversaire "+(y-b[0])+" ans · "+b[2]+" "+MON[b[1]-1]+" "+y}}
+const nextYear=(kid,type)=>{const t=todayS(),Y=+t.slice(0,4),d=defOcc(kid,type,Y);return d&&d.d>=t?Y:Y+1};
+const metas=()=>items.filter(x=>x.occ==="meta"&&!x.del&&KIDS[x.kid]).map(x=>({oid:x.id.replace(/^occ_/,""),kid:x.kid,type:x.type,y:x.y,d:x.d||"",n:x.n||x.id}));
+const giftsOf=oid=>items.filter(x=>x.occ===oid&&!x.del).sort((a,b)=>(a.at||0)-(b.at||0));
+const resOf=oid=>giftsOf(oid).filter(g=>picks[oid+"__"+g.id]).length;
+const SLOTS={lilou:[defOcc("lilou","anniv",2027)],mahily:[defOcc("mahily","noel",2026),defOcc("mahily","anniv",2026)]};
 function pend(x){if(!x||typeof x.name!=="string"||x.name.indexOf("souhait:")!==0)return null;let o={};try{o=JSON.parse(x.url||"{}")||{}}catch(e){}
  return{id:x.id,kid:x.name.slice(8),n:String(x.gift||""),i:(typeof o.i==="string"&&o.i.indexOf("data:image/")===0)?o.i:"",p:String(o.p||""),l:safe(o.l),c:o.c||"",at:x.at||0}}
-function acc(x){let kid=x.from;const s=String(x.s||"");if(!kid){const m=/Idée de (Lilou|Mahily)/.exec(s);if(m)kid=m[1].toLowerCase()}
- if(!kid||!KIDS[kid])return null;return{kid,n:String(x.n||""),i:(typeof x.img==="string"&&x.img.indexOf("data:image/")===0)?x.img:"",list:x.list}}
+function acc(x){if(x.occ==="meta"||x.occ==="prof"||x.del)return null;let kid=x.from;const s=String(x.s||"");if(!kid){const m=/Idée de (Lilou|Mahily)/.exec(s);if(m)kid=m[1].toLowerCase()}
+ if(!kid||!KIDS[kid])return null;return{id:x.id,kid,n:String(x.n||""),i:(typeof x.img==="string"&&x.img.indexOf("data:image/")===0)?x.img:"",list:x.list,occ:x.occ||"",p:fmtP(x.p)}}
 window.share=function(url,text){const d={title:"Liste de cadeaux",text:text+"\n",url:url};
  if(navigator.share){navigator.share(d).catch(()=>{})}
  else if(navigator.clipboard){navigator.clipboard.writeText(text+"\n"+url).then(()=>alert("Lien copié, tu peux le coller dans un message 👍"),()=>prompt("Copie ce lien :",url))}
  else prompt("Copie ce lien :",url)};
-const occ=(e,t,sub,url,text,manage)=>'<div class="c"><div class="r"><div class="e">'+e+'</div><div class="t"><b>'+t+'</b><small>'+sub+'</small></div>'+(url?'<button class="send" data-u="'+esc(url)+'" data-t="'+esc(text)+'">📤 Envoyer le lien</button>':'<button class="send off" disabled>📤 Envoyer</button>')+'</div>'+(manage?'<a class="mg" href="'+manage+'">⚙️ Gérer cette liste</a>':'')+'</div>';
+const lurl=(kid,oid)=>O+"/mes-souhaits/liste.html?k="+kid+"&o="+oid;
+const ltxt=(kid,n)=>"🎁 La liste de cadeaux de "+KIDS[kid]+" ("+n+") est prête ! Tu peux réserver un cadeau ici :";
+const occ=(e,t,sub,url,text,manage)=>'<div class="c"><div class="r"><div class="e">'+e+'</div><div class="t"><b>'+esc(t)+'</b><small>'+sub+'</small></div>'+(url?'<button class="send" data-u="'+esc(url)+'" data-t="'+esc(text)+'">📤 Envoyer le lien</button>':'<button class="send off" disabled>📤 Envoyer</button>')+'</div>'+(manage||'')+'</div>';
 const thumb=w=>'<div class="th">'+(w.i?'<img src="'+w.i+'" alt="">':'🎁')+'</div>';
 const lnk=w=>w.l?' <a href="'+esc(w.l)+'" target="_blank" rel="noopener">🔗</a>':'';
 const row=(w,st,acts)=>'<div class="w">'+thumb(w)+'<div class="t"><b>'+esc(w.n)+'</b><small>'+(w.c&&CL[w.c]?CL[w.c]+' · ':'')+esc(KIDS[w.kid]||w.kid)+(w.p?' · '+esc(w.p):'')+lnk(w)+'</small></div><span class="pill '+st[0]+'">'+st[1]+'</span>'+(acts||'')+'</div>';
+function cardsOf(kid){
+ const have=metas().filter(m=>m.kid===kid),seen={};have.forEach(m=>seen[m.oid]=1);
+ const L=have.map(m=>Object.assign({ex:1},m));
+ (SLOTS[kid]||[]).forEach(s=>{if(!seen[s.oid])L.push(s)});
+ if(kid==="lilou")L.push({legacy:1,type:"noel",oid:"legacy",d:"2026-12-25",n:"Noël 2026"});
+ return L.sort((a,b)=>String(a.d).localeCompare(String(b.d)))}
+function cardHtml(o){
+ if(o.legacy)return occ("🎄","Noël 2026","Chez Maman et Chez Papa",O+"/liste-noel-lilou/","🎄 La liste de cadeaux de Lilou est prête ! Tu peux réserver un cadeau ici :",owner?'<a class="mg" href="/liste-noel-lilou/">⚙️ Gérer cette liste</a>':"");
+ if(o.ex){const n=giftsOf(o.oid).length,r=resOf(o.oid);
+  return occ(EM[o.type]||"🎁",o.n,n+" cadeau"+(n>1?"x":"")+(owner&&r?" · "+r+" réservé"+(r>1?"s":""):""),lurl(o.kid,o.oid),ltxt(o.kid,o.n),owner?'<button class="mg" data-mg="'+esc(o.oid)+'">⚙️ Gérer cette liste</button>':"")}
+ return occ(EM[o.type]||"🎁",o.n,"Liste à créer",null,"",owner?'<button class="mg" data-mk="'+esc(o.oid)+'" data-k="'+esc(o.kid)+'">＋ Créer cette liste</button>':"")}
 function paint(){
  document.body.className=user===undefined?'wait':(user?'in':'out');
  if(!user)return;
- const P=extras.map(pend).filter(Boolean).sort((a,b)=>b.at-a.at);const A=items.map(acc).filter(Boolean);
- const K=P.filter(w=>w.kid!=="didi"),D=P.filter(w=>w.kid==="didi");
+ rebuild();
+ const P=extras.map(pend).filter(Boolean).sort((a,b)=>b.at-a.at);
+ const K=P.filter(w=>w.kid!=="didi"&&KIDS[w.kid]),D=P.filter(w=>w.kid==="didi");
+ const A=items.map(acc).filter(Boolean).sort((a,b)=>(parseInt(String(b.id).replace(/\D/g,""))||0)-(parseInt(String(a.id).replace(/\D/g,""))||0)).slice(0,20);
+ const MT={};metas().forEach(m=>MT[m.oid]=m.n);
  let h="";
- if(K.length)h+='<div class="alert">⏳ <span><b>'+K.length+' souhait'+(K.length>1?'s':'')+'</b> à valider'+(owner?'':' <small>(seul Fabien peut valider)</small>')+'</span></div>';
- h+='<h2><span class="dot" style="background:#4f8dff"></span>Lilou</h2>';
- h+=occ("🎄","Noël 2026","Chez Maman et Chez Papa",O+"/liste-noel-lilou/","🎄 La liste de cadeaux de Lilou est prête ! Tu peux réserver un cadeau ici :",owner?"/liste-noel-lilou/":"");
- h+=occ("🎂","9 ans · 11 juin 2027","Liste à créer");
- h+='<h2><span class="dot" style="background:#ff7eb6"></span>Mahily</h2>';
- h+=occ("🎄","Noël 2026","Liste à créer");
- h+=occ("🎂","12 ans · 22 décembre 2026","Liste à créer");
+ if(K.length)h+='<div class="alert">⏳ <span><b>'+K.length+' souhait'+(K.length>1?'s':'')+'</b> à valider'+(owner?'':' <small>(seuls les parents peuvent valider)</small>')+'</span></div>';
+  const sec=kid=>{const c=KC[kid];
+  h+='<h2><span class="dot" style="background:'+esc(c.c)+'"></span>'+(c.prof?esc(c.e)+" ":"")+esc(KIDS[kid])+(owner&&c.prof?'<button class="xx ep" data-ep="'+esc(kid)+'">✏️</button>':'')+'</h2>';
+  const L=cardsOf(kid);L.forEach(o=>{h+=cardHtml(o)});
+  if(!L.length)h+='<p class="empty">Pas encore de liste'+(owner?' — crée la première ci-dessous':'')+'</p>';
+  if(kid==="mahily")h+=occ("📲","L’appli de Mahily","Son espace à elle, avec ses listes",O+"/mes-souhaits/mahily.html","🎁 Voici l’appli de Mahily avec ses listes de cadeaux :");
+  if(owner)h+='<button class="add" data-new="'+esc(kid)+'">＋ Nouvelle occasion pour '+esc(KIDS[kid])+'</button>';
+  h+='<button class="add idea" data-idea="'+esc(kid)+'">💡 Proposer une idée pour '+esc(KIDS[kid])+'</button>'};
+ ["lilou","mahily"].concat(Object.keys(KC).filter(k=>KC[k].prof)).forEach(sec);
+ if(owner)h+='<button class="add" id="newp">👤 Ajouter un profil</button>';
  h+='<h2><span class="dot" style="background:#9b7bff"></span>Didi</h2>';
  h+=occ("🎁","La liste de Didi",D.length+" idée"+(D.length>1?"s":""),O+"/mes-souhaits/didi.html","🎁 La liste d’idées cadeaux de Didi est prête ! Tu peux réserver un cadeau ici :");
  D.forEach(w=>{h+=row(w,["d","📋 Dans sa liste"],owner?'<div class="act"><button class="bd" data-del="'+w.id+'">🗑 Retirer</button></div>':'')});
- h+='<button class="add" id="addb">＋ Ajouter une idée à la liste de Didi</button>';
+ h+='<button class="add" data-idea="didi">＋ Ajouter une idée à la liste de Didi</button>';
  h+='<h2>💌 Souhaits des filles</h2>';
- const rows=K.map(w=>row(w,["p","⏳ À valider"],owner?'<div class="act"><button class="bm" data-acc="'+w.id+'" data-l="m">→ Chez Maman</button><button class="bp" data-acc="'+w.id+'" data-l="p">→ Chez Papa</button><button class="bn" data-del="'+w.id+'">Refuser</button></div>':'')).concat(A.map(w=>row(w,["k","✅ Accepté · "+(LN[w.list]||"dans la liste")])));
+ const rows=K.map(w=>row(w,["p","⏳ À valider"],owner?'<div class="act"><button class="bv" data-val="'+w.id+'">✅ Valider…</button><button class="bn" data-del="'+w.id+'">Refuser</button></div>':'')).concat(A.map(w=>row({n:w.n,i:w.i,kid:w.kid,p:w.p},["k","✅ "+(w.occ?(MT[w.occ]||"Dans une liste"):(LN[w.list]||"Dans la liste"))])));
  h+=rows.length?rows.join(""):'<p class="empty">Pas encore de souhait</p>';
  $("out").innerHTML=h;
  document.querySelectorAll(".send[data-u]").forEach(b=>b.onclick=()=>share(b.dataset.u,b.dataset.t));
- document.querySelectorAll("[data-acc]").forEach(b=>b.onclick=()=>accept(b.dataset.acc,b.dataset.l,b));
+ document.querySelectorAll("[data-val]").forEach(b=>b.onclick=()=>validate(b.dataset.val));
  document.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>refuse(b.dataset.del,b));
- $("addb").onclick=()=>{$("sh").style.display="flex"};
- $("who").textContent=owner?"Gestion complète":"Lecture et idées de Didi";$("au").className="auth"+(owner?" on":"")}
-async function accept(id,list,b){const w=extras.map(pend).filter(Boolean).find(x=>x.id===id);if(!w||!FB||!owner)return;
- b.disabled=true;const p=parseFloat(String(w.p).replace(",",".").replace(/[^\d.]/g,""));
- const d={n:w.n,p:isNaN(p)?null:p,from:w.kid,s:(CT[w.c]?CT[w.c]+" · ":"")+"Idée de "+(KIDS[w.kid]||w.kid),u:w.l||"",list:list};if(w.i)d.img=w.i;
- try{await FB.set("items","n"+Date.now(),d);await FB.del("extras",id)}catch(e){alert("Ça n’a pas marché (es-tu bien connecté avec ton compte ?)");b.disabled=false}}
+ document.querySelectorAll("[data-mg]").forEach(b=>b.onclick=()=>openMgr(b.dataset.mg));
+ document.querySelectorAll("[data-mk]").forEach(b=>b.onclick=()=>{const o=cardsOf(b.dataset.k).find(x=>x.oid===b.dataset.mk);if(o)makeOcc(o,true)});
+ document.querySelectorAll("[data-new]").forEach(b=>b.onclick=()=>newOcc(b.dataset.new));
+ document.querySelectorAll("[data-idea]").forEach(b=>b.onclick=()=>openForm({mode:"idea",kid:b.dataset.idea}));
+ document.querySelectorAll("[data-ep]").forEach(b=>b.onclick=()=>profSheet(b.dataset.ep));
+ if($("newp"))$("newp").onclick=()=>profSheet("");
+ $("who").textContent=owner?"Gestion complète":"Lecture et idées de Didi";$("au").className="auth"+(owner?" on":"");
+ if(mgr)renderMgr()}
+// ---- profils (items/prof_<id>)
+const slug=t=>String(t).normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[^a-z0-9]/g,"").slice(0,20);
+const EMO=["🎁","👨","👩","🧒","👧","👦","👶","🧑","💚","🐶"],COL=["#2f8f6c","#4f8dff","#ff7eb6","#9b7bff","#f5a623","#e8564a","#14a3a3","#8a6a4f"];
+function profSheet(id){if(!owner||!FB)return;
+ const ed=id&&KC[id]&&KC[id].prof?KC[id]:null,st={e:ed?ed.e:EMO[0],c:ed?ed.c:COL[0],n:ed?ed.n:"",b:ed?ed.bd:""};
+ const draw=()=>{sx('<h2 style="margin:0 0 12px">'+(ed?"Modifier le profil":"Nouveau profil")+'</h2><label><b>Prénom</b></label><input id="pn" maxlength="30" placeholder="Ex : Fabien"><label><b>Emoji</b></label><div class="chips">'+EMO.map(e=>'<button class="chip sm'+(e===st.e?" on":"")+'" data-e="'+e+'">'+e+'</button>').join("")+'</div><label><b>Couleur</b></label><div class="chips">'+COL.map(c=>'<button class="chip sm'+(c===st.c?" on":"")+'" data-c="'+c+'" style="background:'+c+';min-width:44px">&nbsp;</button>').join("")+'</div><label><b>Date de naissance</b> (facultatif, pour l’anniversaire)</label><input id="pb" type="date"><button class="go" id="pgo">'+(ed?"Enregistrer":"Créer le profil")+'</button>'+(ed?'<button class="cx" id="pdel" style="color:#c9345f">Supprimer ce profil</button>':"")+'<button class="cx" id="ccx">Annuler</button>');
+  $("pn").value=st.n;$("pb").value=st.b;
+  const keep=()=>{st.n=$("pn").value;st.b=$("pb").value};
+  document.querySelectorAll("#sxb [data-e]").forEach(b=>b.onclick=()=>{keep();st.e=b.dataset.e;draw()});
+  document.querySelectorAll("#sxb [data-c]").forEach(b=>b.onclick=()=>{keep();st.c=b.dataset.c;draw()});
+  $("ccx").onclick=sxClose;
+  if($("pdel"))$("pdel").onclick=async()=>{if(metas().some(m=>m.kid===id)){alert("Supprime d’abord ses listes.");return}if(!confirm("Supprimer le profil de "+ed.n+" ?"))return;try{await FB.del("items","prof_"+id);sxClose()}catch(e){alert("Ça n’a pas marché")}};
+  $("pgo").onclick=async()=>{keep();const n=st.n.trim(),bd=st.b||"";if(!n){alert("Écris un prénom 😊");return}
+   let k=id;if(!k){k=slug(n)||"p"+Date.now();if(KIDS[k]){let i=2;while(KIDS[k+i])i++;k=k+i}}
+   try{await FB.set("items","prof_"+k,{occ:"prof",n:n,c:st.c,e:st.e,bd:bd},!!id);sxClose()}catch(e){alert("Impossible d’enregistrer (es-tu connecté avec ton compte ?)")}}};
+ draw()}
+// ---- création d'occasions
+async function makeOcc(o,open){
+ if(!FB||!owner)return false;
+ if(!metas().some(m=>m.oid===o.oid)){
+  try{await FB.set("items","occ_"+o.oid,{occ:"meta",kid:o.kid,type:o.type,y:o.y,d:o.d,n:o.n})}catch(e){alert("Impossible de créer la liste (es-tu connecté avec ton compte ?)");return false}}
+ if(open)openMgr(o.oid);return true}
+function sx(html){$("sx").style.display="flex";$("sxb").innerHTML=html}
+const sxClose=()=>{$("sx").style.display="none";$("sxb").innerHTML="";dctx=null};
+function newOcc(kid){
+ const st={type:"noel",y:nextYear(kid,"noel")};
+ const draw=()=>{const o=defOcc(kid,st.type,st.y);
+  sx('<h2 style="margin:0 0 12px">Nouvelle occasion · '+esc(KIDS[kid])+'</h2><div class="chips"><button class="chip'+(st.type==="noel"?" on":"")+'" data-t="noel">🎄 Noël</button>'+(birth(kid)?'<button class="chip'+(st.type==="anniv"?" on":"")+'" data-t="anniv">🎂 Anniversaire</button>':"")+'</div>'+(birth(kid)?"":'<p class="prev" style="font-weight:500;opacity:.7">Pour un anniversaire, ajoute d’abord sa date de naissance (✏️ sur le profil).</p>')+'<label><b>Année</b></label><input id="cy" type="number" inputmode="numeric" value="'+st.y+'"><p class="prev">'+(o?EM[o.type]+" "+esc(o.n):"")+'</p><button class="go" id="cgo">Créer la liste</button><button class="cx" id="ccx">Annuler</button>');
+  document.querySelectorAll("#sxb [data-t]").forEach(b=>b.onclick=()=>{st.type=b.dataset.t;st.y=nextYear(kid,st.type);draw()});
+  $("cy").oninput=()=>{const y=parseInt($("cy").value);if(y>2000&&y<2100){st.y=y;const q=defOcc(kid,st.type,y);document.querySelector("#sxb .prev").textContent=q?EM[q.type]+" "+q.n:""}};
+  $("ccx").onclick=sxClose;
+  $("cgo").onclick=async()=>{const q=defOcc(kid,st.type,st.y);if(!q)return;
+   if(kid==="lilou"&&q.oid==="lilou_noel2026"){alert("Le Noël 2026 de Lilou, c’est la liste existante (Chez Maman / Chez Papa).");return}
+   const ok=await makeOcc(q,true);if(ok)sxClose()}};
+ draw()}
+// ---- choix d'une destination (validation d'un souhait / déplacement d'un cadeau)
+function dests(kid,ex){
+ const t=todayS(),Y=+t.slice(0,4),out=[],seen={};
+ if(kid==="lilou"){out.push({legacy:"m",type:"noel",d:"2026-12-25",n:"Noël 2026 · Chez Maman"},{legacy:"p",type:"noel",d:"2026-12-25",n:"Noël 2026 · Chez Papa"})}
+ metas().filter(m=>m.kid===kid&&m.oid!==ex).forEach(m=>{seen[m.oid]=1;out.push({def:m,ex:1,type:m.type,d:m.d,n:m.n})});
+ const add=q=>{if(!q||seen[q.oid]||q.oid===ex||q.d<t)return;if(kid==="lilou"&&q.oid==="lilou_noel2026")return;seen[q.oid]=1;out.push({def:q,type:q.type,d:q.d,n:q.n})};
+ [Y,Y+1,Y+2].forEach(y=>add(defOcc(kid,"noel",y)));
+ [Y,Y+1].forEach(y=>add(defOcc(kid,"anniv",y)));
+ (SLOTS[kid]||[]).forEach(add);
+ const nl=out.filter(o=>!o.ex&&!o.legacy&&o.type==="noel").slice(0,2);
+ return out.filter(o=>o.ex||o.legacy||o.type!=="noel"||nl.indexOf(o)>=0).sort((a,b)=>String(a.d).localeCompare(String(b.d)))}
+function chooseDest(kid,title,ex,cb){
+ const L=dests(kid,ex),t=todayS(),nx=L.find(o=>o.d>=t);dctx={L,cb};
+ sx('<h2 style="margin:0 0 4px">'+esc(title)+'</h2><p class="prev" style="margin:0 0 12px">'+(nx?"Prochaine occasion : "+esc(nx.n.replace(/ · Chez.*/,"")):"")+'</p><div class="chips">'+L.map((o,i)=>'<button class="chip'+(o.def&&!o.ex?" new":"")+'" data-i="'+i+'"><b>'+(EM[o.type]||"🎁")+" "+esc(o.n)+'</b><small>'+(o.legacy?"Liste actuelle de Lilou":(o.ex?"Liste existante · "+giftsOf(o.def.oid).length+" cadeau(x)":"À créer automatiquement"))+'</small></button>').join("")+'</div><button class="cx" id="ccx">Annuler</button>');
+ document.querySelectorAll("#sxb [data-i]").forEach(b=>b.onclick=()=>{const o=dctx.L[+b.dataset.i],f=dctx.cb;sxClose();f(o)});
+ $("ccx").onclick=sxClose}
+async function putGift(g,dest){ // crée le cadeau g dans dest ; renvoie true si ok
+ if(dest.legacy){const d={n:g.n,p:g.p,from:g.from,s:g.s,u:g.u||"",list:dest.legacy};if(g.img)d.img=g.img;await FB.set("items","n"+Date.now(),d);return true}
+ if(!(await makeOcc(dest.def,false)))return false;
+ const d={occ:dest.def.oid,n:g.n,p:g.p,u:g.u||"",at:Date.now()};if(g.from)d.from=g.from;if(g.s)d.s=g.s;if(g.img)d.img=g.img;
+ await FB.set("items","g"+Date.now(),d);return true}
+function validate(id){const w=extras.map(pend).filter(Boolean).find(x=>x.id===id);if(!w||!FB||!owner||!KIDS[w.kid])return;
+ chooseDest(w.kid,"Où mettre « "+w.n+" » ?",null,async dest=>{
+  const g={n:w.n,p:num(w.p),u:w.l||"",img:w.i,from:w.kid,s:(CT[w.c]?CT[w.c]+" · ":"")+"Idée de "+KIDS[w.kid]};
+  try{if(await putGift(g,dest))await FB.del("extras",id)}catch(e){alert("Ça n’a pas marché (es-tu bien connecté avec ton compte ?)")}})}
 async function refuse(id,b){if(!FB||!owner)return;if(!confirm("Retirer ce souhait ?"))return;b.disabled=true;try{await FB.del("extras",id)}catch(e){alert("Ça n’a pas marché");b.disabled=false}}
+// ---- gestion d'une liste
+const sheetM=()=>$("sm");
+function openMgr(oid){mgr=oid;sheetM().style.display="flex";renderMgr()}
+function closeMgr(){mgr=null;sheetM().style.display="none";$("smb").innerHTML=""}
+function renderMgr(){
+ const m=metas().find(x=>x.oid===mgr);if(!m||!owner){closeMgr();return}
+ const G=giftsOf(m.oid),r=resOf(m.oid),u=lurl(m.kid,m.oid);
+ let h='<div class="mh"><div class="t"><b>'+(EM[m.type]||"🎁")+" "+esc(m.n)+'</b><small>'+esc(KIDS[m.kid])+" · "+G.length+" cadeau"+(G.length>1?"x":"")+(r?" · "+r+" réservé"+(r>1?"s":""):"")+'</small></div><button class="xx" id="mx">✕</button></div>';
+ h+='<div class="act"><button class="send" style="flex:1;justify-content:center" data-u="'+esc(u)+'" data-t="'+esc(ltxt(m.kid,m.n))+'">📤 Envoyer le lien de cette liste</button></div>';
+ if(m.kid==="mahily")h+='<div class="act" style="margin-top:7px"><button class="bn" style="flex:1" data-u="'+esc(O+"/mes-souhaits/mahily.html")+'" data-t="🎁 Voici l’appli de Mahily avec ses listes de cadeaux :">📲 Envoyer l’appli de Mahily</button></div>';
+ h+=G.length?G.map(g=>{const pk=picks[m.oid+"__"+g.id],pr=fmtP(g.p),ul=safe(g.u);
+  return '<div class="w">'+thumb({i:(typeof g.img==="string"&&g.img.indexOf("data:image/")===0)?g.img:""})+'<div class="t"><b>'+esc(g.n||"")+'</b><small>'+(pr?esc(pr):"")+(ul?' <a href="'+esc(ul)+'" target="_blank" rel="noopener">🔗 lien</a>':"")+'</small></div><span class="pill '+(pk?"d":"k")+'">'+(pk?"🎁 "+esc(pk.name||"Réservé")+" · "+fmtD(pk.at):"Libre")+'</span><div class="act"><button class="bn" data-ed="'+esc(g.id)+'">✏️ Modifier</button><button class="bp" data-mv="'+esc(g.id)+'">📦 Déplacer</button>'+(pk?'<button class="bm" data-rl="'+esc(g.id)+'">↩︎ Libérer</button>':"")+'<button class="bd" data-rm="'+esc(g.id)+'">🗑</button></div></div>'}).join(""):'<p class="empty">Aucun cadeau pour l’instant</p>';
+ h+='<button class="add" id="mad">＋ Ajouter un cadeau</button><button class="cx" id="mdo" style="color:#c9345f">Supprimer cette liste</button>';
+ $("smb").innerHTML=h;
+ $("mx").onclick=closeMgr;
+ document.querySelectorAll("#smb .send[data-u],#smb .bn[data-u]").forEach(b=>b.onclick=()=>share(b.dataset.u,b.dataset.t));
+ document.querySelectorAll("#smb [data-ed]").forEach(b=>b.onclick=()=>{const g=items.find(x=>x.id===b.dataset.ed);if(g)openForm({mode:"edit",g,oid:m.oid})});
+ document.querySelectorAll("#smb [data-mv]").forEach(b=>b.onclick=()=>moveGift(b.dataset.mv,m));
+ document.querySelectorAll("#smb [data-rl]").forEach(b=>b.onclick=()=>release(m.oid,b.dataset.rl,b));
+ document.querySelectorAll("#smb [data-rm]").forEach(b=>b.onclick=()=>rmGift(m.oid,b.dataset.rm,b));
+ $("mad").onclick=()=>openForm({mode:"add",oid:m.oid});
+ $("mdo").onclick=()=>rmOcc(m)}
+async function release(oid,gid,b){const pk=picks[oid+"__"+gid];if(!pk||!FB||!owner)return;if(!confirm("Libérer ce cadeau (réservé par "+(pk.name||"?")+") ?"))return;b.disabled=true;try{await FB.del("picks",oid+"__"+gid)}catch(e){alert("Impossible de libérer la réservation.");b.disabled=false}}
+async function rmGift(oid,gid,b){const g=items.find(x=>x.id===gid);if(!g||!FB||!owner)return;if(!confirm("Supprimer « "+(g.n||"")+" » ?"))return;b.disabled=true;
+ try{await FB.del("items",gid);if(picks[oid+"__"+gid])try{await FB.del("picks",oid+"__"+gid)}catch(e){}}catch(e){alert("Ça n’a pas marché");b.disabled=false}}
+async function rmOcc(m){if(!FB||!owner)return;const G=giftsOf(m.oid);if(!confirm("Supprimer « "+m.n+" »"+(G.length?" et ses "+G.length+" cadeaux":"")+" ? C’est définitif."))return;
+ try{for(const g of G){await FB.del("items",g.id);if(picks[m.oid+"__"+g.id])try{await FB.del("picks",m.oid+"__"+g.id)}catch(e){}}await FB.del("items","occ_"+m.oid);closeMgr()}catch(e){alert("Ça n’a pas marché")}}
+function moveGift(gid,m){const g=items.find(x=>x.id===gid);if(!g||!FB||!owner)return;
+ chooseDest(m.kid,"Déplacer « "+(g.n||"")+" » vers…",m.oid,async dest=>{
+  const pk=picks[m.oid+"__"+gid];if(pk&&!confirm("Ce cadeau est réservé par "+(pk.name||"?")+". La réservation sera libérée. Continuer ?"))return;
+  try{
+   if(dest.legacy){const d={n:g.n,p:typeof g.p==="number"?g.p:null,from:g.from||m.kid,s:g.s||"",u:g.u||"",list:dest.legacy};if(g.img)d.img=g.img;await FB.set("items","n"+Date.now(),d);await FB.del("items",gid)}
+   else{if(!(await makeOcc(dest.def,false)))return;await FB.set("items",gid,{occ:dest.def.oid},true)}
+   if(pk)try{await FB.del("picks",m.oid+"__"+gid)}catch(e){}
+  }catch(e){alert("Ça n’a pas marché")}})}
+// ---- formulaire cadeau / idée de Didi
+function openForm(c){fctx=c;const e=c.mode==="edit"?c.g:{};
+ $("shT").textContent=c.mode==="idea"?"💡 Une idée pour "+(KIDS[c.kid]||"…"):(c.mode==="edit"?"✏️ Modifier le cadeau":"🎁 Ajouter un cadeau");
+ $("n").value=e.n||"";$("l").value=e.u||"";$("p").value=(typeof e.p==="number"&&e.p>0)?String(e.p).replace(".",",")+" €":"";$("f").value="";
+ $("ok").textContent=c.mode==="idea"?"Envoyer l’idée 💌":(c.mode==="edit"?"Enregistrer":"Ajouter à la liste");
+ $("sh").style.display="flex"}
 window.shrink=function(file,max,q,cb){const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,max/Math.max(im.width,im.height));const c=document.createElement("canvas");c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);const x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);cb(c.toDataURL("image/jpeg",q))};im.onerror=()=>cb("");im.src=r.result};r.readAsDataURL(file)};
 $("no").onclick=()=>{$("sh").style.display="none"};
-$("ok").onclick=()=>{const n=$("n").value.trim();let l=$("l").value.trim();const p=$("p").value.trim();const f=$("f").files[0];
+$("ok").onclick=()=>{const n=$("n").value.trim();let l=$("l").value.trim();const p=$("p").value.trim();const f=$("f").files[0];const c=fctx;
  if(!n){alert("Écris le nom du cadeau 😊");return}if(l&&!/^https?:\/\//i.test(l))l="https://"+l;
- if(!FB){alert("Pas de connexion, réessaie dans un instant.");return}
+ if(!FB||!c){alert("Pas de connexion, réessaie dans un instant.");return}
  const b=$("ok");b.disabled=true;
- const go=async img=>{try{await FB.add("extras",{name:"souhait:didi",gift:n,url:JSON.stringify({l:l,i:img||"",p:p,c:"envie"}),at:Date.now()});
-  $("n").value="";$("l").value="";$("p").value="";$("f").value="";$("sh").style.display="none"}catch(e){alert("Oups, ça n’a pas marché. Réessaie.")}b.disabled=false};
+ const go=async img=>{try{
+  if(c.mode==="idea")await FB.add("extras",{name:"souhait:"+c.kid,gift:n,url:JSON.stringify({l:l,i:img||"",p:p,c:"envie"}),at:Date.now()});
+  else if(c.mode==="add"){const d={occ:c.oid,n:n,p:num(p),u:l,at:Date.now()};if(img)d.img=img;await FB.set("items","g"+Date.now(),d)}
+  else{const d={n:n,p:num(p),u:l};if(img)d.img=img;await FB.set("items",c.g.id,d,true)}
+  $("sh").style.display="none"}catch(e){alert("Oups, ça n’a pas marché. Réessaie.")}b.disabled=false};
  if(f)shrink(f,380,0.78,go);else go("")};
 const doIn=async()=>{if(!FB){$("lh").textContent="Chargement… réessaie dans un instant.";return}
  try{await FB.signIn()}catch(e){$("lh").textContent="Connexion impossible. Réessaie."}};
