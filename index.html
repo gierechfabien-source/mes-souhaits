@@ -20,11 +20,12 @@ body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background
 <body>
 <div id="kid"></div>
 <script>
-let db=null,extras=[];
+let db=null,extras=[],items=[];
 const FBC={apiKey:"AIzaSyBYNEjVg4wrSLJRo6wMXl_Hd9lb2JDeHO0",authDomain:"liste-noel-lilou.firebaseapp.com",projectId:"liste-noel-lilou",storageBucket:"liste-noel-lilou.firebasestorage.app",messagingSenderId:"1037196943479",appId:"1:1037196943479:web:540fcf7d56f238043a2672"};
 (async()=>{try{const b="https://www.gstatic.com/firebasejs/10.14.1/";const [A,F]=await Promise.all([import(b+"firebase-app.js"),import(b+"firebase-firestore.js")]);const app=A.initializeApp(FBC),fs=F.getFirestore(app);
 db={collection:c=>({add:d=>F.addDoc(F.collection(fs,c),d)})};
-F.onSnapshot(F.collection(fs,"extras"),x=>{extras=x.docs.map(d=>Object.assign({id:d.id},d.data()));window.__kidRender&&window.__kidRender()},()=>{})}catch(e){}})();
+F.onSnapshot(F.collection(fs,"extras"),x=>{extras=x.docs.map(d=>Object.assign({id:d.id},d.data()));window.__kidRender&&window.__kidRender()},()=>{});
+F.onSnapshot(F.collection(fs,"items"),x=>{items=x.docs.map(d=>Object.assign({id:d.id},d.data()));window.__kidRender&&window.__kidRender()},()=>{})}catch(e){}})();
 (function(){
 const CATS={noel:"🎄 Noël",anniv:"🎂 Anniversaire",envie:"💖 Envie"};
 const KIDS={lilou:"Lilou",mahily:"Mahily"};
@@ -42,12 +43,12 @@ const g=id=>document.getElementById(id);
 
 function kidRender(){
   const L=g("kd_list");if(!L||!K)return;
-  const ws=extras.filter(isW).map(parseW).filter(w=>w.kid===K).sort((a,b)=>b.at-a.at);
+  const ws=extras.filter(isW).map(parseW).filter(w=>w.kid===K).sort((a,b)=>b.at-a.at).concat(items.filter(x=>x.from===K||String(x.s||"").indexOf("Idée de "+KIDS[K])===0).map(x=>({n:String(x.n||""),i:(typeof x.img==="string"&&x.img.indexOf("data:image/")===0)?x.img:"",p:x.p!=null?String(x.p).replace(".",",")+" €":"",c:"",ok:1,at:0})));
   L.innerHTML="";
   if(!ws.length){L.innerHTML='<p style="text-align:center;opacity:.75;margin:30px 10px">Appuie sur le <b>+</b> pour ajouter ton premier souhait ✨</p>';return}
   ws.forEach(w=>{const d=document.createElement("div");
     d.style.cssText="display:flex;gap:12px;align-items:center;background:#fff;border-radius:18px;padding:10px;margin:10px 0;box-shadow:0 4px 14px rgba(80,90,180,.12)";
-    d.innerHTML=thumb(w)+'<div style="flex:1;min-width:0"><div style="font-weight:700;overflow-wrap:anywhere">'+esc(w.n)+'</div>'+(w.p?'<div style="color:#e8478b;font-weight:700">'+esc(w.p)+'</div>':'')+'<div style="font-size:13px;opacity:.75">'+(w.c?CATS[w.c]+' · ':'')+'💌 Les parents vont regarder</div></div>';
+    d.innerHTML=thumb(w)+'<div style="flex:1;min-width:0"><div style="font-weight:700;overflow-wrap:anywhere">'+esc(w.n)+'</div>'+(w.p?'<div style="color:#e8478b;font-weight:700">'+esc(w.p)+'</div>':'')+'<div style="font-size:13px;opacity:.75">'+(w.c?CATS[w.c]+' · ':'')+(w.ok?'✅ Accepté par les parents !':'💌 Les parents vont regarder')+'</div></div>';
     L.appendChild(d)})}
 
 function icon(){try{const c=document.createElement("canvas");c.width=c.height=180;const x=c.getContext("2d");const gr=x.createLinearGradient(0,0,180,180);gr.addColorStop(0,"#e8478b");gr.addColorStop(1,"#9b7bff");x.fillStyle=gr;x.fillRect(0,0,180,180);x.textAlign="center";x.textBaseline="middle";x.font="96px serif";x.fillText("\u{1F381}",90,92);x.font="34px serif";x.fillText("✨",148,34);
