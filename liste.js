@@ -2,7 +2,7 @@
 const FBC={"apiKey":"AIzaSyBYNEjVg4wrSLJRo6wMXl_Hd9lb2JDeHO0","authDomain":"liste-noel-lilou.firebaseapp.com","projectId":"liste-noel-lilou","storageBucket":"liste-noel-lilou.firebasestorage.app","messagingSenderId":"1037196943479","appId":"1:1037196943479:web:540fcf7d56f238043a2672"};
 const Q=new URLSearchParams(location.search);
 const KID=window.KID||Q.get("k")||"mahily";
-const TH={mahily:{n:"Mahily",c:"#e4508d",c2:"#ff8fb8",bg:"#fff3f8",ink:"#4a1634",icon:"icon-mahily.svg"},lilou:{n:"Lilou",c:"#2f86d6",c2:"#62c3fa",bg:"#eef7ff",ink:"#0f3358",icon:"icon-lilou.svg"}};
+const TH={mahily:{n:"Mahily",c:"#e4508d",c2:"#ff8fb8",bg:"#fff3f8",ink:"#4a1634",icon:"icon-mahily.svg"},lilou:{n:"Lilou",c:"#2f86d6",c2:"#62c3fa",bg:"#eef7ff",ink:"#0f3358",icon:"icon-lilou.svg"},didi:{n:"Didi",c:"#7b5cd6",c2:"#a78bff",bg:"#f4f0ff",ink:"#2a1a55",icon:"icon-parents.svg"}};
 let T=TH[KID]||{n:KID,c:"#2f8f6c",c2:"#6fd1a8",bg:"#f1f8f4",ink:"#16352b",icon:"icon-parents.svg"};
 const mix=(h,k)=>{const n=parseInt(h.slice(1),16),f=v=>Math.round(v+(255-v)*k);return "#"+[n>>16,(n>>8)&255,n&255].map(v=>f(v).toString(16).padStart(2,"0")).join("")};
 const $=id=>document.getElementById(id);
