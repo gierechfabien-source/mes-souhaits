@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>La liste de Didi</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#ffe3f1">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#fff3f9;color:#1d2a4a;padding-bottom:50px}
+header{padding:34px 16px 22px;text-align:center;color:#fff;background:linear-gradient(135deg,#ec4899,#9b7bff)}
+header h1{margin:0;font-size:26px}header p{margin:6px 0 0;opacity:.92;font-size:14px}
+main{max-width:600px;margin:0 auto;padding:10px 12px}
+.g{display:flex;gap:12px;align-items:center;background:#fff;border-radius:18px;padding:10px;margin:10px 0;box-shadow:0 4px 14px rgba(160,80,160,.12)}
+.th{width:66px;height:66px;flex:none;border-radius:14px;background:#fde8f3;display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:30px}
+.th img{width:100%;height:100%;object-fit:cover}
+.t{flex:1;min-width:0}.t b{display:block;overflow-wrap:anywhere}.pr{color:#e8478b;font-weight:700;font-size:14px}.sm{font-size:12px;opacity:.7}
+button{border:0;border-radius:12px;padding:10px 13px;font-weight:700;color:#fff;background:linear-gradient(135deg,#ec4899,#9b7bff);font-size:13px;cursor:pointer}
+.res{background:#d9f7e3;color:#13693a;cursor:default}
+.empty{text-align:center;opacity:.65;margin:30px 10px}
+</style>
+</head>
+<body>
+<header><h1>🎁 La liste de Didi</h1><p>Choisis un cadeau et réserve-le, pour éviter les doublons</p></header>
+<main id="out"></main>
+<script>
+let extras=[],picks=[];
+const FBC={apiKey:"AIzaSyBYNEjVg4wrSLJRo6wMXl_Hd9lb2JDeHO0",authDomain:"liste-noel-lilou.firebaseapp.com",projectId:"liste-noel-lilou",storageBucket:"liste-noel-lilou.firebasestorage.app",messagingSenderId:"1037196943479",appId:"1:1037196943479:web:540fcf7d56f238043a2672"};
+(async()=>{try{const b="https://www.gstatic.com/firebasejs/10.14.1/";const [A,F]=await Promise.all([import(b+"firebase-app.js"),import(b+"firebase-firestore.js")]);const app=A.initializeApp(FBC),fs=F.getFirestore(app);
+window.__res=(id,n)=>F.setDoc(F.doc(fs,"picks",id),{name:n,at:Date.now()});
+F.onSnapshot(F.collection(fs,"extras"),x=>{extras=x.docs.map(d=>Object.assign({id:d.id},d.data()));paint()},()=>{});
+F.onSnapshot(F.collection(fs,"picks"),x=>{picks=x.docs.map(d=>Object.assign({id:d.id},d.data()));paint()},()=>{});
+}catch(e){}})();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const safe=u=>u&&/^https:\/\//i.test(u)?u:"";
+function W(x){if(!x||typeof x.name!=="string"||x.name!=="souhait:didi")return null;let o={};try{o=JSON.parse(x.url||"{}")||{}}catch(e){}
+ return{id:x.id,n:String(x.gift||""),i:(typeof o.i==="string"&&o.i.indexOf("data:image/")===0)?o.i:"",p:String(o.p||""),l:safe(o.l),at:x.at||0}}
+function paint(){const o=document.getElementById("out");
+ const ws=extras.map(W).filter(Boolean).sort((a,b)=>b.at-a.at);
+ if(!ws.length){o.innerHTML='<p class="empty">La liste arrive bientôt 🎀</p>';return}
+ o.innerHTML="";
+ ws.forEach(w=>{const r=picks.find(p=>p.id==="didi_"+w.id);const d=document.createElement("div");d.className="g";
+  d.innerHTML='<div class="th">'+(w.i?'<img src="'+w.i+'" alt="">':'🎁')+'</div><div class="t"><b>'+esc(w.n)+'</b>'+(w.p?'<div class="pr">'+esc(w.p)+'</div>':'')+(w.l?'<div class="sm"><a href="'+esc(w.l)+'" target="_blank" rel="noopener">🔗 Voir le produit</a></div>':'')+'</div>';
+  const b=document.createElement("button");
+  if(r){b.className="res";b.textContent="✅ Réservé";b.style.background="#d9f7e3"}
+  else{b.textContent="Je le prends";b.onclick=async()=>{const n=prompt("Ton prénom ? (pour que les autres voient que c’est pris)");if(!n||!n.trim())return;
+   try{await window.__res("didi_"+w.id,n.trim().slice(0,30))}catch(e){alert("Oups, ça n’a pas marché. Réessaie.")}}}
+  d.appendChild(b);o.appendChild(d)})}
+window.__paint=paint;paint();
+</script>
+</body>
+</html>
