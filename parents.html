@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Noël des filles – Parents</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Noël des filles">
+<meta name="theme-color" content="#d9ecff">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:linear-gradient(180deg,#d9ecff,#e4dcff);color:#1d2a4a;min-height:100vh;padding:20px 14px 60px}
+main{max-width:640px;margin:0 auto}
+h1{text-align:center;font-size:26px;margin:6px 0 4px}
+.sub{text-align:center;opacity:.75;margin:0 0 18px}
+h2{font-size:19px;margin:26px 4px 8px}
+.card{display:flex;gap:12px;align-items:center;background:#fff;border-radius:18px;padding:14px;margin:10px 0;box-shadow:0 4px 14px rgba(80,90,180,.12);text-decoration:none;color:inherit}
+.card .em{font-size:30px;width:46px;text-align:center}
+.card b{display:block;font-size:17px}
+.card small{opacity:.7}
+.off{opacity:.55}
+.w{display:flex;gap:12px;align-items:center;background:#fff;border-radius:16px;padding:10px;margin:8px 0;box-shadow:0 3px 10px rgba(80,90,180,.1)}
+.th{width:58px;height:58px;flex:none;border-radius:12px;background:#eaf2ff;display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:26px}
+.th img{width:100%;height:100%;object-fit:cover}
+.t{flex:1;min-width:0}.t b{overflow-wrap:anywhere}
+.b{display:inline-block;font-size:12px;font-weight:700;border-radius:10px;padding:2px 8px;margin-top:4px}
+.pend{background:#fff0c9;color:#8a5a00}.ok{background:#d9f7e3;color:#13693a}
+.empty{opacity:.65;text-align:center;margin:14px}
+a.btn{display:block;text-align:center;margin:18px 0 0;padding:14px;border-radius:14px;font-weight:700;color:#fff;text-decoration:none;background:linear-gradient(135deg,#e8478b,#9b7bff)}
+</style>
+</head>
+<body>
+<main>
+<h1>🎄 Noël des filles</h1>
+<p class="sub">Les listes et les souhaits, au même endroit</p>
+<a class="card" href="/liste-noel-lilou/"><span class="em">🎁</span><span><b>Liste de Noël de Lilou</b><small>Chez Maman et Chez Papa</small></span></a>
+<div class="card off"><span class="em">🎁</span><span><b>Liste de Noël de Mahily</b><small>Bientôt</small></span></div>
+<div id="out"></div>
+<a class="btn" href="/liste-noel-lilou/">✅ Valider les souhaits (dans la liste de Lilou, mode édition)</a>
+</main>
+<script>
+let extras=[],items=[];
+const FBC={apiKey:"AIzaSyBYNEjVg4wrSLJRo6wMXl_Hd9lb2JDeHO0",authDomain:"liste-noel-lilou.firebaseapp.com",projectId:"liste-noel-lilou",storageBucket:"liste-noel-lilou.firebasestorage.app",messagingSenderId:"1037196943479",appId:"1:1037196943479:web:540fcf7d56f238043a2672"};
+(async()=>{try{const b="https://www.gstatic.com/firebasejs/10.14.1/";const [A,F]=await Promise.all([import(b+"firebase-app.js"),import(b+"firebase-firestore.js")]);const app=A.initializeApp(FBC),fs=F.getFirestore(app);
+F.onSnapshot(F.collection(fs,"extras"),x=>{extras=x.docs.map(d=>Object.assign({id:d.id},d.data()));paint()},()=>{});
+F.onSnapshot(F.collection(fs,"items"),x=>{items=x.docs.map(d=>Object.assign({id:d.id},d.data()));paint()},()=>{})}catch(e){}})();
+const KIDS={lilou:"Lilou",mahily:"Mahily"};
+const CL={noel:"🎄 Noël",anniv:"🎂 Anniversaire",envie:"💖 Envie"};
+const LN={m:"Chez Maman",p:"Chez Papa"};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const safe=u=>u&&/^https:\/\//i.test(u)?u:"";
+function pend(x){if(!x||typeof x.name!=="string"||x.name.indexOf("souhait:")!==0)return null;let o={};try{o=JSON.parse(x.url||"{}")||{}}catch(e){}
+ return{kid:x.name.slice(8),n:String(x.gift||""),i:(typeof o.i==="string"&&o.i.indexOf("data:image/")===0)?o.i:"",p:String(o.p||""),c:o.c||"",l:safe(o.l),at:x.at||0}}
+function acc(x){let kid=x.from;const s=String(x.s||"");if(!kid){const m=/Idée de (Lilou|Mahily)/.exec(s);if(m)kid=m[1].toLowerCase()}
+ if(!kid||!KIDS[kid])return null;const cat=Object.keys(CL).find(k=>s.indexOf(CL[k].slice(3))===0)||"";
+ return{kid,n:String(x.n||""),i:(typeof x.img==="string"&&x.img.indexOf("data:image/")===0)?x.img:"",p:x.p!=null?String(x.p).replace(".",",")+" €":"",c:cat,l:safe(x.u),list:x.list,id:x.id}}
+const row=(w,st)=>'<div class="w"><div class="th">'+(w.i?'<img src="'+w.i+'" alt="">':'🎁')+'</div><div class="t"><b>'+esc(w.n)+'</b>'+(w.p?'<div style="color:#e8478b;font-weight:700">'+esc(w.p)+'</div>':'')+'<div style="font-size:13px;opacity:.75">'+(w.c&&CL[w.c]?CL[w.c]+' · ':'')+(w.l?'<a href="'+esc(w.l)+'" target="_blank" rel="noopener">🔗 lien</a>':'')+'</div><span class="b '+st[0]+'">'+st[1]+'</span></div></div>';
+function paint(){const out=document.getElementById("out");let h="";
+ for(const k of Object.keys(KIDS)){
+  const P=extras.map(pend).filter(w=>w&&w.kid===k).sort((a,b)=>b.at-a.at);
+  const A=items.map(acc).filter(w=>w&&w.kid===k);
+  h+='<h2>💌 Souhaits de '+KIDS[k]+'</h2>';
+  if(!P.length&&!A.length)h+='<p class="empty">Pas encore de souhait</p>';
+  P.forEach(w=>h+=row(w,["pend","⏳ À valider"]));
+  A.forEach(w=>h+=row(w,["ok","✅ Accepté · "+(LN[w.list]||"dans la liste")]))}
+ out.innerHTML=h}
+paint();
+</script>
+</body>
+</html>
