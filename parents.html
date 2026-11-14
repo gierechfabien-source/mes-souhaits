@@ -11,69 +11,126 @@
 <link rel="manifest" href="manifest-parents.webmanifest">
 <link rel="icon" type="image/svg+xml" href="icon-parents.svg">
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#f3f6ff;color:#1d2a4a;padding:18px 14px 40px}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#f3f6ff;color:#1d2a4a;padding:18px 14px 90px}
 main{max-width:640px;margin:0 auto}
+.hd{display:flex;align-items:center;gap:8px}.hd h1{flex:1}
 h1{font-size:24px;margin:4px 4px 2px}.s{margin:0 4px 14px;opacity:.65;font-size:14px}
-.alert{background:#fff4d6;border-radius:16px;padding:12px 14px;display:flex;gap:10px;align-items:center;margin-bottom:14px;font-size:14px;text-decoration:none;color:inherit}
-.alert b{color:#8a5a00}.alert .go{margin-left:auto;font-weight:800;color:#8a5a00}
+.auth{border:0;border-radius:14px;padding:8px 12px;font-weight:800;font-size:13px;background:#fff;color:#4a5a9a;box-shadow:0 3px 10px rgba(80,90,180,.15);cursor:pointer}
+.auth.on{background:#d9f7e3;color:#13693a}
+.alert{background:#fff4d6;border-radius:16px;padding:12px 14px;display:flex;gap:10px;align-items:center;margin-bottom:14px;font-size:14px}
+.alert b{color:#8a5a00}
 h2{font-size:17px;margin:18px 4px 8px;display:flex;align-items:center;gap:8px}
 .dot{width:12px;height:12px;border-radius:50%}
 .c{background:#fff;border-radius:18px;padding:13px 14px;margin:9px 0;box-shadow:0 3px 12px rgba(80,90,180,.1)}
-.r{display:flex;align-items:center;gap:12px}.e{font-size:28px}.t{flex:1;min-width:0}.t b{display:block;font-size:16px}.t small{opacity:.65}
-.send{display:flex;align-items:center;gap:6px;border:0;border-radius:14px;padding:11px 14px;font-weight:800;font-size:14px;color:#fff;background:linear-gradient(135deg,#25b866,#1a9e8f);cursor:pointer;white-space:nowrap}
+.r{display:flex;align-items:center;gap:10px}.e{font-size:28px}.t{flex:1;min-width:0}.t b{display:block;font-size:16px}.t small{opacity:.65}
+.send{display:flex;align-items:center;gap:6px;border:0;border-radius:14px;padding:11px 13px;font-weight:800;font-size:14px;color:#fff;background:linear-gradient(135deg,#25b866,#1a9e8f);cursor:pointer;white-space:nowrap}
 .send.off{background:#e9ecf5;color:#8a93b5;cursor:default}
-.w{display:flex;gap:10px;align-items:center;background:#fff;border-radius:14px;padding:8px 12px;margin:7px 0}
+.mg{display:block;text-align:center;margin-top:8px;padding:8px;border-radius:12px;background:#eef2ff;color:#3b5bc4;font-weight:800;font-size:13px;text-decoration:none}
+.w{display:flex;gap:10px;align-items:center;background:#fff;border-radius:14px;padding:8px 12px;margin:7px 0;flex-wrap:wrap}
 .th{width:44px;height:44px;flex:none;border-radius:10px;background:#eaf2ff;display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:22px}.th img{width:100%;height:100%;object-fit:cover}
-.w .t b{font-size:15px;overflow-wrap:anywhere}
+.w .t b{font-size:15px;overflow-wrap:anywhere}.w a{font-size:12px}
 .pill{font-size:12px;font-weight:800;border-radius:10px;padding:4px 9px;white-space:nowrap}.p{background:#fff0c9;color:#8a5a00}.k{background:#d9f7e3;color:#13693a}.d{background:#fde3f1;color:#a0246a}
+.act{display:flex;gap:6px;width:100%;margin-top:2px}.act button{flex:1;border:0;border-radius:10px;padding:9px 4px;font-weight:800;font-size:13px;color:#fff;cursor:pointer}
+.bm{background:#e8478b}.bp{background:#4f8dff}.bn{background:#9aa3c4}.bd{background:#d6336c}
 .empty{opacity:.6;text-align:center;margin:10px}
+.add{width:100%;margin-top:10px;border:2px dashed #c9bdfa;border-radius:14px;padding:12px;background:#faf8ff;color:#6a4fd0;font-weight:800;font-size:14px;cursor:pointer}
+#sh{display:none;position:fixed;inset:0;z-index:10000;background:rgba(20,30,70,.5);align-items:flex-end;justify-content:center}
+#sh .b{background:#fff;width:100%;max-width:520px;border-radius:24px 24px 0 0;padding:20px 18px calc(20px + env(safe-area-inset-bottom));max-height:92vh;overflow:auto}
+#sh input{width:100%;padding:12px;border:2px solid #d9e2ff;border-radius:12px;font-size:16px;margin:4px 0 12px;font-family:inherit}
+#sh .go{width:100%;padding:15px;border:0;border-radius:14px;font-size:17px;font-weight:700;color:#fff;background:linear-gradient(135deg,#ec4899,#9b7bff);cursor:pointer}
 </style>
 </head>
 <body>
 <main>
-<h1>Les filles</h1><p class="s">Listes, souhaits et liens à envoyer</p>
+<div class="hd"><h1>Les filles</h1><button class="auth" id="au">🔐 Connexion</button></div>
+<p class="s">Listes, souhaits et liens à envoyer</p>
 <div id="out"></div>
 </main>
+<div id="sh"><div class="b"><h2 style="margin:0 0 12px">🎁 Une idée pour ma liste</h2>
+<label><b>Le nom du cadeau</b></label><input id="n" maxlength="80" placeholder="Ex : Parfum…">
+<label><b>Le lien</b> (si tu en as un)</label><input id="l" inputmode="url" autocapitalize="off" placeholder="https://…">
+<label><b>Ou une photo</b></label><input id="f" type="file" accept="image/*">
+<label><b>Le prix</b> (si tu le sais)</label><input id="p" maxlength="20" placeholder="Ex : 59 €">
+<button class="go" id="ok">Ajouter à ma liste 💌</button>
+<button id="no" style="width:100%;padding:12px;border:0;background:none;font-size:16px;margin-top:6px;color:#5a6a9a;cursor:pointer">Annuler</button></div></div>
 <script>
-let extras=[],items=[];
+let extras=[],items=[],owner=false,FB=null;
+const hh=t=>{let a=5381;for(const c of t)a=((a<<5)+a+c.charCodeAt(0))>>>0;return a};
 const FBC={"apiKey":"AIzaSyBYNEjVg4wrSLJRo6wMXl_Hd9lb2JDeHO0","authDomain":"liste-noel-lilou.firebaseapp.com","projectId":"liste-noel-lilou","storageBucket":"liste-noel-lilou.firebasestorage.app","messagingSenderId":"1037196943479","appId":"1:1037196943479:web:540fcf7d56f238043a2672"};
-(async()=>{try{const b="https://www.gstatic.com/firebasejs/10.14.1/";const [A,F]=await Promise.all([import(b+"firebase-app.js"),import(b+"firebase-firestore.js")]);const app=A.initializeApp(FBC),fs=F.getFirestore(app);
-F.onSnapshot(F.collection(fs,"extras"),x=>{extras=x.docs.map(d=>Object.assign({id:d.id},d.data()));paint()},()=>{});
-F.onSnapshot(F.collection(fs,"items"),x=>{items=x.docs.map(d=>Object.assign({id:d.id},d.data()));paint()},()=>{})}catch(e){}})();
+(async()=>{try{
+const A=await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js");
+const F=await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js");
+const U=await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js");
+const app=A.initializeApp(FBC);const fs=F.getFirestore(app);const au=U.getAuth(app);
+const prov=new U.GoogleAuthProvider();
+FB={add:(c,d)=>F.addDoc(F.collection(fs,c),d),set:(c,id,d)=>F.setDoc(F.doc(fs,c,id),d),del:(c,id)=>F.deleteDoc(F.doc(fs,c,id)),
+ signIn:async()=>{try{await U.signInWithPopup(au,prov)}catch(e){await U.signInWithRedirect(au,prov)}},signOut:()=>U.signOut(au)};
+U.onAuthStateChanged(au,u=>{owner=!!(u&&u.emailVerified&&hh(String(u.email||"").toLowerCase())===1357359238);paint()});
+F.onSnapshot(F.collection(fs,"extras"),s=>{extras=s.docs.map(d=>Object.assign({id:d.id},d.data()));paint()});
+F.onSnapshot(F.collection(fs,"items"),s=>{items=s.docs.map(d=>d.data());paint()});
+}catch(e){console.error(e)}})();
 
 const O=location.origin;
 const KIDS={lilou:"Lilou",mahily:"Mahily",didi:"Didi"};
 const CL={noel:"🎄 Noël",anniv:"🎂 Anniversaire",envie:"💖 Envie"};
+const CT={noel:"Noël",anniv:"Anniversaire",envie:"Envie"};
 const LN={m:"Chez Maman",p:"Chez Papa"};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const safe=u=>u&&/^https:\/\//i.test(u)?u:"";
+const $=id=>document.getElementById(id);
 function pend(x){if(!x||typeof x.name!=="string"||x.name.indexOf("souhait:")!==0)return null;let o={};try{o=JSON.parse(x.url||"{}")||{}}catch(e){}
- return{kid:x.name.slice(8),n:String(x.gift||""),i:(typeof o.i==="string"&&o.i.indexOf("data:image/")===0)?o.i:"",c:o.c||"",at:x.at||0}}
+ return{id:x.id,kid:x.name.slice(8),n:String(x.gift||""),i:(typeof o.i==="string"&&o.i.indexOf("data:image/")===0)?o.i:"",p:String(o.p||""),l:safe(o.l),c:o.c||"",at:x.at||0}}
 function acc(x){let kid=x.from;const s=String(x.s||"");if(!kid){const m=/Idée de (Lilou|Mahily)/.exec(s);if(m)kid=m[1].toLowerCase()}
  if(!kid||!KIDS[kid])return null;return{kid,n:String(x.n||""),i:(typeof x.img==="string"&&x.img.indexOf("data:image/")===0)?x.img:"",list:x.list}}
 window.share=function(url,text){const d={title:"Liste de cadeaux",text:text+"\n",url:url};
  if(navigator.share){navigator.share(d).catch(()=>{})}
  else if(navigator.clipboard){navigator.clipboard.writeText(text+"\n"+url).then(()=>alert("Lien copié, tu peux le coller dans un message 👍"),()=>prompt("Copie ce lien :",url))}
  else prompt("Copie ce lien :",url)};
-const occ=(e,t,sub,url,text)=>'<div class="c"><div class="r"><div class="e">'+e+'</div><div class="t"><b>'+t+'</b><small>'+sub+'</small></div>'+(url?'<button class="send" data-u="'+esc(url)+'" data-t="'+esc(text)+'">📤 Envoyer le lien</button>':'<button class="send off" disabled>📤 Envoyer</button>')+'</div></div>';
-const row=(w,st)=>'<div class="w"><div class="th">'+(w.i?'<img src="'+w.i+'" alt="">':'🎁')+'</div><div class="t"><b>'+esc(w.n)+'</b><small>'+(w.c&&CL[w.c]?CL[w.c]+' · ':'')+esc(KIDS[w.kid]||w.kid)+'</small></div><span class="pill '+st[0]+'">'+st[1]+'</span></div>';
-function paint(){const P=extras.map(pend).filter(Boolean).sort((a,b)=>b.at-a.at);const A=items.map(acc).filter(Boolean);
- const nPend=P.filter(w=>w.kid!=="didi").length,nDidi=P.filter(w=>w.kid==="didi").length;
+const occ=(e,t,sub,url,text,manage)=>'<div class="c"><div class="r"><div class="e">'+e+'</div><div class="t"><b>'+t+'</b><small>'+sub+'</small></div>'+(url?'<button class="send" data-u="'+esc(url)+'" data-t="'+esc(text)+'">📤 Envoyer le lien</button>':'<button class="send off" disabled>📤 Envoyer</button>')+'</div>'+(manage?'<a class="mg" href="'+manage+'">⚙️ Gérer cette liste</a>':'')+'</div>';
+const thumb=w=>'<div class="th">'+(w.i?'<img src="'+w.i+'" alt="">':'🎁')+'</div>';
+const lnk=w=>w.l?' <a href="'+esc(w.l)+'" target="_blank" rel="noopener">🔗</a>':'';
+const row=(w,st,acts)=>'<div class="w">'+thumb(w)+'<div class="t"><b>'+esc(w.n)+'</b><small>'+(w.c&&CL[w.c]?CL[w.c]+' · ':'')+esc(KIDS[w.kid]||w.kid)+(w.p?' · '+esc(w.p):'')+lnk(w)+'</small></div><span class="pill '+st[0]+'">'+st[1]+'</span>'+(acts||'')+'</div>';
+function paint(){
+ const P=extras.map(pend).filter(Boolean).sort((a,b)=>b.at-a.at);const A=items.map(acc).filter(Boolean);
+ const K=P.filter(w=>w.kid!=="didi"),D=P.filter(w=>w.kid==="didi");
  let h="";
- if(nPend)h+='<a class="alert" href="/liste-noel-lilou/">⏳ <span><b>'+nPend+' souhait'+(nPend>1?'s':'')+'</b> attend'+(nPend>1?'ent':'')+' ta validation</span><span class="go">Valider ›</span></a>';
+ if(K.length)h+='<div class="alert">⏳ <span><b>'+K.length+' souhait'+(K.length>1?'s':'')+'</b> à valider'+(owner?'':' <small>(connecte-toi pour valider)</small>')+'</span></div>';
  h+='<h2><span class="dot" style="background:#4f8dff"></span>Lilou</h2>';
- h+=occ("🎄","Noël 2026","Chez Maman et Chez Papa",O+"/liste-noel-lilou/","🎄 La liste de cadeaux de Lilou est prête ! Tu peux réserver un cadeau ici :");
+ h+=occ("🎄","Noël 2026","Chez Maman et Chez Papa",O+"/liste-noel-lilou/","🎄 La liste de cadeaux de Lilou est prête ! Tu peux réserver un cadeau ici :",owner?"/liste-noel-lilou/":"");
  h+=occ("🎂","9 ans · 11 juin 2027","Liste à créer");
  h+='<h2><span class="dot" style="background:#ff7eb6"></span>Mahily</h2>';
  h+=occ("🎄","Noël 2026","Liste à créer");
  h+=occ("🎂","12 ans · 22 décembre 2026","Liste à créer");
  h+='<h2><span class="dot" style="background:#9b7bff"></span>Didi</h2>';
- h+=occ("🎁","La liste de Didi",nDidi+" idée"+(nDidi>1?"s":""),O+"/mes-souhaits/didi.html","🎁 La liste d’idées cadeaux de Didi est prête ! Tu peux réserver un cadeau ici :");
- h+='<h2>💌 Souhaits reçus</h2>';
- const rows=P.filter(w=>w.kid!=="didi").map(w=>row(w,["p","⏳ À valider"])).concat(A.map(w=>row(w,["k","✅ Accepté · "+(LN[w.list]||"dans la liste")])),P.filter(w=>w.kid==="didi").map(w=>row(w,["d","📋 Dans sa liste"])));
+ h+=occ("🎁","La liste de Didi",D.length+" idée"+(D.length>1?"s":""),O+"/mes-souhaits/didi.html","🎁 La liste d’idées cadeaux de Didi est prête ! Tu peux réserver un cadeau ici :");
+ D.forEach(w=>{h+=row(w,["d","📋 Dans sa liste"],owner?'<div class="act"><button class="bd" data-del="'+w.id+'">🗑 Retirer</button></div>':'')});
+ h+='<button class="add" id="addb">＋ Ajouter une idée à la liste de Didi</button>';
+ h+='<h2>💌 Souhaits des filles</h2>';
+ const rows=K.map(w=>row(w,["p","⏳ À valider"],owner?'<div class="act"><button class="bm" data-acc="'+w.id+'" data-l="m">→ Chez Maman</button><button class="bp" data-acc="'+w.id+'" data-l="p">→ Chez Papa</button><button class="bn" data-del="'+w.id+'">Refuser</button></div>':'')).concat(A.map(w=>row(w,["k","✅ Accepté · "+(LN[w.list]||"dans la liste")])));
  h+=rows.length?rows.join(""):'<p class="empty">Pas encore de souhait</p>';
- document.getElementById("out").innerHTML=h;
- document.querySelectorAll(".send[data-u]").forEach(b=>b.onclick=()=>share(b.dataset.u,b.dataset.t))}
+ $("out").innerHTML=h;
+ document.querySelectorAll(".send[data-u]").forEach(b=>b.onclick=()=>share(b.dataset.u,b.dataset.t));
+ document.querySelectorAll("[data-acc]").forEach(b=>b.onclick=()=>accept(b.dataset.acc,b.dataset.l,b));
+ document.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>refuse(b.dataset.del,b));
+ $("addb").onclick=()=>{$("sh").style.display="flex"};
+ const au=$("au");au.textContent=owner?"✓ Connecté":"🔐 Connexion";au.className="auth"+(owner?" on":"")}
+async function accept(id,list,b){const w=extras.map(pend).filter(Boolean).find(x=>x.id===id);if(!w||!FB||!owner)return;
+ b.disabled=true;const p=parseFloat(String(w.p).replace(",",".").replace(/[^\d.]/g,""));
+ const d={n:w.n,p:isNaN(p)?null:p,from:w.kid,s:(CT[w.c]?CT[w.c]+" · ":"")+"Idée de "+(KIDS[w.kid]||w.kid),u:w.l||"",list:list};if(w.i)d.img=w.i;
+ try{await FB.set("items","n"+Date.now(),d);await FB.del("extras",id)}catch(e){alert("Ça n’a pas marché (es-tu bien connecté avec ton compte ?)");b.disabled=false}}
+async function refuse(id,b){if(!FB||!owner)return;if(!confirm("Retirer ce souhait ?"))return;b.disabled=true;try{await FB.del("extras",id)}catch(e){alert("Ça n’a pas marché");b.disabled=false}}
+window.shrink=function(file,max,q,cb){const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,max/Math.max(im.width,im.height));const c=document.createElement("canvas");c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);const x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);cb(c.toDataURL("image/jpeg",q))};im.onerror=()=>cb("");im.src=r.result};r.readAsDataURL(file)};
+$("no").onclick=()=>{$("sh").style.display="none"};
+$("ok").onclick=()=>{const n=$("n").value.trim();let l=$("l").value.trim();const p=$("p").value.trim();const f=$("f").files[0];
+ if(!n){alert("Écris le nom du cadeau 😊");return}if(l&&!/^https?:\/\//i.test(l))l="https://"+l;
+ if(!FB){alert("Pas de connexion, réessaie dans un instant.");return}
+ const b=$("ok");b.disabled=true;
+ const go=async img=>{try{await FB.add("extras",{name:"souhait:didi",gift:n,url:JSON.stringify({l:l,i:img||"",p:p,c:"envie"}),at:Date.now()});
+  $("n").value="";$("l").value="";$("p").value="";$("f").value="";$("sh").style.display="none"}catch(e){alert("Oups, ça n’a pas marché. Réessaie.")}b.disabled=false};
+ if(f)shrink(f,380,0.78,go);else go("")};
+$("au").onclick=async()=>{if(!FB){alert("Connexion indisponible pour le moment.");return}
+ if(owner){if(confirm("Te déconnecter ?"))FB.signOut();return}
+ try{await FB.signIn()}catch(e){alert("Connexion impossible. Réessaie.")}};
 let DP=null;window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();DP=e});
 try{const c=document.createElement("canvas");c.width=c.height=180;const x=c.getContext("2d");const gr=x.createLinearGradient(0,0,180,180);gr.addColorStop(0,"#4f8dff");gr.addColorStop(1,"#9b7bff");x.fillStyle=gr;x.fillRect(0,0,180,180);x.fillStyle="#fff";x.beginPath();x.moveTo(90,34);x.lineTo(148,82);x.lineTo(148,142);x.lineTo(32,142);x.lineTo(32,82);x.closePath();x.fill();x.fillStyle="#ff5fa2";x.beginPath();x.moveTo(90,130);x.bezierCurveTo(58,110,52,92,62,82);x.bezierCurveTo(70,74,84,78,90,88);x.bezierCurveTo(96,78,110,74,118,82);x.bezierCurveTo(128,92,122,110,90,130);x.fill();
 const l=document.createElement("link");l.rel="apple-touch-icon";l.href=c.toDataURL("image/png");document.head.appendChild(l)}catch(e){}
