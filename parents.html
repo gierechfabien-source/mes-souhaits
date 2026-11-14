@@ -7,45 +7,76 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Parents">
-<meta name="theme-color" content="#f3f6ff">
+<meta name="theme-color" content="#0b3b2e">
 <link rel="manifest" href="manifest-parents.webmanifest">
 <link rel="icon" type="image/svg+xml" href="icon-parents.svg">
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#f3f6ff;color:#1d2a4a;padding:18px 14px 90px}
-main{max-width:640px;margin:0 auto}
-.hd{display:flex;align-items:center;gap:8px}.hd h1{flex:1}
-h1{font-size:24px;margin:4px 4px 2px}.s{margin:0 4px 14px;opacity:.65;font-size:14px}
-.auth{border:0;border-radius:14px;padding:8px 12px;font-weight:800;font-size:13px;background:#fff;color:#4a5a9a;box-shadow:0 3px 10px rgba(80,90,180,.15);cursor:pointer}
-.auth.on{background:#d9f7e3;color:#13693a}
-.alert{background:#fff4d6;border-radius:16px;padding:12px 14px;display:flex;gap:10px;align-items:center;margin-bottom:14px;font-size:14px}
-.alert b{color:#8a5a00}
-h2{font-size:17px;margin:18px 4px 8px;display:flex;align-items:center;gap:8px}
+*{box-sizing:border-box}html,body{min-height:100%}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#f6f1e7;color:#16352b}
+body.out{background:#06281f}
+#spl,#land,#app{display:none}
+body.wait #spl{display:flex}body.out #land{display:flex}body.in #app{display:block}
+#spl{position:fixed;inset:0;align-items:center;justify-content:center;background:#06281f}
+#spl img{width:84px;height:84px;border-radius:22px;opacity:.9}
+#land{min-height:100vh;min-height:100dvh;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px 26px calc(28px + env(safe-area-inset-bottom));color:#fbf6ec;position:relative;overflow:hidden;background:radial-gradient(120% 70% at 25% 0%,#1d7a5c 0%,#0e4a38 38%,#06281f 100%)}
+#land:before,#land:after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+#land:before{width:340px;height:340px;right:-140px;top:-90px;background:radial-gradient(circle,rgba(245,179,53,.22),rgba(245,179,53,0) 70%)}
+#land:after{width:300px;height:300px;left:-130px;bottom:-80px;background:radial-gradient(circle,rgba(251,246,236,.10),rgba(251,246,236,0) 70%)}
+#land .logo{width:132px;height:132px;border-radius:32px;box-shadow:0 22px 50px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.08);margin-bottom:30px;position:relative}
+#land h1{font:600 38px/1.05 Georgia,"Times New Roman",serif;margin:0 0 10px;letter-spacing:.2px;position:relative}
+#land .tag{margin:0 auto 38px;max-width:290px;font-size:15.5px;line-height:1.45;color:rgba(251,246,236,.72);position:relative}
+#land .gold{display:inline-block;width:38px;height:3px;border-radius:3px;background:#f5b335;margin:0 0 18px;position:relative}
+.btn{width:100%;max-width:320px;display:flex;align-items:center;justify-content:center;gap:11px;border:0;border-radius:16px;padding:16px 18px;font-size:16.5px;font-weight:700;cursor:pointer;font-family:inherit;position:relative}
+.btn.g{background:#fbf6ec;color:#0e4a38;box-shadow:0 10px 26px rgba(0,0,0,.28)}
+.btn.i{background:rgba(251,246,236,.07);color:#f5c15a;border:1.5px solid rgba(245,179,53,.55);margin-top:13px}
+.btn:active{transform:scale(.985)}
+#land .foot{position:absolute;left:0;right:0;bottom:calc(20px + env(safe-area-inset-bottom));font-size:12.5px;color:rgba(251,246,236,.42)}
+#land .hint{margin-top:16px;font-size:12.5px;color:rgba(251,246,236,.6);min-height:16px;position:relative}
+header.top{background:linear-gradient(135deg,#0e4a38,#06281f);color:#fbf6ec;padding:calc(14px + env(safe-area-inset-top)) 16px 16px;display:flex;align-items:center;gap:12px;border-radius:0 0 26px 26px;box-shadow:0 8px 24px rgba(6,40,31,.25)}
+header.top img{width:42px;height:42px;border-radius:12px}
+header.top .tt{flex:1;min-width:0}header.top b{display:block;font:600 21px/1.1 Georgia,serif}header.top small{opacity:.65;font-size:12.5px}
+.auth{border:0;border-radius:12px;padding:8px 12px;font-weight:700;font-size:12.5px;background:rgba(251,246,236,.12);color:#fbf6ec;cursor:pointer}
+.auth.on{background:#f5b335;color:#3a2a00}
+main{max-width:640px;margin:0 auto;padding:16px 14px 40px}
+.alert{background:#fff3d1;border:1px solid #f1d58d;border-radius:16px;padding:12px 14px;display:flex;gap:10px;align-items:center;margin-bottom:12px;font-size:14px}
+.alert b{color:#7a4f00}
+h2{font:600 18px Georgia,serif;margin:22px 4px 8px;display:flex;align-items:center;gap:9px;color:#0e4a38}
 .dot{width:12px;height:12px;border-radius:50%}
-.c{background:#fff;border-radius:18px;padding:13px 14px;margin:9px 0;box-shadow:0 3px 12px rgba(80,90,180,.1)}
-.r{display:flex;align-items:center;gap:10px}.e{font-size:28px}.t{flex:1;min-width:0}.t b{display:block;font-size:16px}.t small{opacity:.65}
-.send{display:flex;align-items:center;gap:6px;border:0;border-radius:14px;padding:11px 13px;font-weight:800;font-size:14px;color:#fff;background:linear-gradient(135deg,#25b866,#1a9e8f);cursor:pointer;white-space:nowrap}
-.send.off{background:#e9ecf5;color:#8a93b5;cursor:default}
-.mg{display:block;text-align:center;margin-top:8px;padding:8px;border-radius:12px;background:#eef2ff;color:#3b5bc4;font-weight:800;font-size:13px;text-decoration:none}
-.w{display:flex;gap:10px;align-items:center;background:#fff;border-radius:14px;padding:8px 12px;margin:7px 0;flex-wrap:wrap}
-.th{width:44px;height:44px;flex:none;border-radius:10px;background:#eaf2ff;display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:22px}.th img{width:100%;height:100%;object-fit:cover}
+.c{background:#fff;border-radius:18px;padding:13px 14px;margin:9px 0;box-shadow:0 2px 12px rgba(14,74,56,.08);border:1px solid rgba(14,74,56,.06)}
+.r{display:flex;align-items:center;gap:10px}.e{font-size:27px}.t{flex:1;min-width:0}.t b{display:block;font-size:16px}.t small{opacity:.62}
+.send{display:flex;align-items:center;gap:6px;border:0;border-radius:14px;padding:11px 13px;font-weight:700;font-size:14px;color:#fff;background:linear-gradient(135deg,#1a8a68,#0e4a38);cursor:pointer;white-space:nowrap}
+.send.off{background:#ece7da;color:#9a9484;cursor:default}
+.mg{display:block;text-align:center;margin-top:9px;padding:9px;border-radius:12px;background:#eef5f1;color:#0e4a38;font-weight:700;font-size:13px;text-decoration:none}
+.w{display:flex;gap:10px;align-items:center;background:#fff;border-radius:14px;padding:8px 12px;margin:7px 0;flex-wrap:wrap;border:1px solid rgba(14,74,56,.06)}
+.th{width:44px;height:44px;flex:none;border-radius:10px;background:#f0ebdd;display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:22px}.th img{width:100%;height:100%;object-fit:cover}
 .w .t b{font-size:15px;overflow-wrap:anywhere}.w a{font-size:12px}
-.pill{font-size:12px;font-weight:800;border-radius:10px;padding:4px 9px;white-space:nowrap}.p{background:#fff0c9;color:#8a5a00}.k{background:#d9f7e3;color:#13693a}.d{background:#fde3f1;color:#a0246a}
-.act{display:flex;gap:6px;width:100%;margin-top:2px}.act button{flex:1;border:0;border-radius:10px;padding:9px 4px;font-weight:800;font-size:13px;color:#fff;cursor:pointer}
-.bm{background:#e8478b}.bp{background:#4f8dff}.bn{background:#9aa3c4}.bd{background:#d6336c}
+.pill{font-size:12px;font-weight:700;border-radius:10px;padding:4px 9px;white-space:nowrap}.p{background:#fff0c9;color:#8a5a00}.k{background:#d9f3e6;color:#0e6a45}.d{background:#fde3f1;color:#a0246a}
+.act{display:flex;gap:6px;width:100%;margin-top:2px}.act button{flex:1;border:0;border-radius:10px;padding:10px 4px;font-weight:700;font-size:13px;color:#fff;cursor:pointer}
+.bm{background:#e8478b}.bp{background:#3f86e8}.bn{background:#9a9484}.bd{background:#c9345f}
 .empty{opacity:.6;text-align:center;margin:10px}
-.add{width:100%;margin-top:10px;border:2px dashed #c9bdfa;border-radius:14px;padding:12px;background:#faf8ff;color:#6a4fd0;font-weight:800;font-size:14px;cursor:pointer}
-#sh{display:none;position:fixed;inset:0;z-index:10000;background:rgba(20,30,70,.5);align-items:flex-end;justify-content:center}
+.add{width:100%;margin-top:10px;border:2px dashed #b9cfc4;border-radius:14px;padding:12px;background:#f1f6f3;color:#0e4a38;font-weight:700;font-size:14px;cursor:pointer}
+#sh{display:none;position:fixed;inset:0;z-index:10000;background:rgba(6,40,31,.55);align-items:flex-end;justify-content:center}
 #sh .b{background:#fff;width:100%;max-width:520px;border-radius:24px 24px 0 0;padding:20px 18px calc(20px + env(safe-area-inset-bottom));max-height:92vh;overflow:auto}
-#sh input{width:100%;padding:12px;border:2px solid #d9e2ff;border-radius:12px;font-size:16px;margin:4px 0 12px;font-family:inherit}
-#sh .go{width:100%;padding:15px;border:0;border-radius:14px;font-size:17px;font-weight:700;color:#fff;background:linear-gradient(135deg,#ec4899,#9b7bff);cursor:pointer}
+#sh input{width:100%;padding:12px;border:2px solid #dfe8e3;border-radius:12px;font-size:16px;margin:4px 0 12px;font-family:inherit}
+#sh .go{width:100%;padding:15px;border:0;border-radius:14px;font-size:17px;font-weight:700;color:#fff;background:linear-gradient(135deg,#1a8a68,#0e4a38);cursor:pointer}
 </style>
 </head>
-<body>
-<main>
-<div class="hd"><h1>Les filles</h1><button class="auth" id="au">🔐 Connexion</button></div>
-<p class="s">Listes, souhaits et liens à envoyer</p>
-<div id="out"></div>
-</main>
+<body class="wait">
+<div id="spl"><img src="icon-parents.svg" alt=""></div>
+<section id="land">
+<img class="logo" src="icon-parents.svg" alt="">
+<span class="gold"></span>
+<h1>Les filles</h1>
+<p class="tag">Les listes de cadeaux et les souhaits de la famille, au même endroit.</p>
+<button class="btn g" id="lg"><svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.6 5.9c4.4-4.1 7-10.1 7-17.6z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.5-.8-3-.8-4.7s.3-3.2.8-4.7l-7.9-6.1C.9 16.4 0 20.1 0 24s.9 7.6 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.6-5.9c-2.1 1.4-4.9 2.3-8.3 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>Continuer avec Google</button>
+<button class="btn i" id="li">📲 Installer l’appli</button>
+<div class="hint" id="lh"></div>
+<div class="foot">Espace réservé à la famille</div>
+</section>
+<div id="app">
+<header class="top"><img src="icon-parents.svg" alt=""><div class="tt"><b>Les filles</b><small id="who">Parents</small></div><button class="auth" id="au">Déconnexion</button></header>
+<main><div id="out"></div></main>
+</div>
 <div id="sh"><div class="b"><h2 style="margin:0 0 12px">🎁 Une idée pour ma liste</h2>
 <label><b>Le nom du cadeau</b></label><input id="n" maxlength="80" placeholder="Ex : Parfum…">
 <label><b>Le lien</b> (si tu en as un)</label><input id="l" inputmode="url" autocapitalize="off" placeholder="https://…">
@@ -54,7 +85,7 @@ h2{font-size:17px;margin:18px 4px 8px;display:flex;align-items:center;gap:8px}
 <button class="go" id="ok">Ajouter à ma liste 💌</button>
 <button id="no" style="width:100%;padding:12px;border:0;background:none;font-size:16px;margin-top:6px;color:#5a6a9a;cursor:pointer">Annuler</button></div></div>
 <script>
-let extras=[],items=[],owner=false,FB=null;
+let extras=[],items=[],owner=false,FB=null,user=undefined;
 const hh=t=>{let a=5381;for(const c of t)a=((a<<5)+a+c.charCodeAt(0))>>>0;return a};
 const FBC={"apiKey":"AIzaSyBYNEjVg4wrSLJRo6wMXl_Hd9lb2JDeHO0","authDomain":"liste-noel-lilou.firebaseapp.com","projectId":"liste-noel-lilou","storageBucket":"liste-noel-lilou.firebasestorage.app","messagingSenderId":"1037196943479","appId":"1:1037196943479:web:540fcf7d56f238043a2672"};
 (async()=>{try{
@@ -65,10 +96,10 @@ const app=A.initializeApp(FBC);const fs=F.getFirestore(app);const au=U.getAuth(a
 const prov=new U.GoogleAuthProvider();
 FB={add:(c,d)=>F.addDoc(F.collection(fs,c),d),set:(c,id,d)=>F.setDoc(F.doc(fs,c,id),d),del:(c,id)=>F.deleteDoc(F.doc(fs,c,id)),
  signIn:async()=>{try{await U.signInWithPopup(au,prov)}catch(e){await U.signInWithRedirect(au,prov)}},signOut:()=>U.signOut(au)};
-U.onAuthStateChanged(au,u=>{owner=!!(u&&u.emailVerified&&hh(String(u.email||"").toLowerCase())===1357359238);paint()});
+U.onAuthStateChanged(au,u=>{user=u||null;owner=!!(u&&u.emailVerified&&hh(String(u.email||"").toLowerCase())===1357359238);paint()});
 F.onSnapshot(F.collection(fs,"extras"),s=>{extras=s.docs.map(d=>Object.assign({id:d.id},d.data()));paint()});
 F.onSnapshot(F.collection(fs,"items"),s=>{items=s.docs.map(d=>d.data());paint()});
-}catch(e){console.error(e)}})();
+}catch(e){console.error(e);user=null;paint()}})();
 
 const O=location.origin;
 const KIDS={lilou:"Lilou",mahily:"Mahily",didi:"Didi"};
@@ -91,10 +122,12 @@ const thumb=w=>'<div class="th">'+(w.i?'<img src="'+w.i+'" alt="">':'🎁')+'</d
 const lnk=w=>w.l?' <a href="'+esc(w.l)+'" target="_blank" rel="noopener">🔗</a>':'';
 const row=(w,st,acts)=>'<div class="w">'+thumb(w)+'<div class="t"><b>'+esc(w.n)+'</b><small>'+(w.c&&CL[w.c]?CL[w.c]+' · ':'')+esc(KIDS[w.kid]||w.kid)+(w.p?' · '+esc(w.p):'')+lnk(w)+'</small></div><span class="pill '+st[0]+'">'+st[1]+'</span>'+(acts||'')+'</div>';
 function paint(){
+ document.body.className=user===undefined?'wait':(user?'in':'out');
+ if(!user)return;
  const P=extras.map(pend).filter(Boolean).sort((a,b)=>b.at-a.at);const A=items.map(acc).filter(Boolean);
  const K=P.filter(w=>w.kid!=="didi"),D=P.filter(w=>w.kid==="didi");
  let h="";
- if(K.length)h+='<div class="alert">⏳ <span><b>'+K.length+' souhait'+(K.length>1?'s':'')+'</b> à valider'+(owner?'':' <small>(connecte-toi pour valider)</small>')+'</span></div>';
+ if(K.length)h+='<div class="alert">⏳ <span><b>'+K.length+' souhait'+(K.length>1?'s':'')+'</b> à valider'+(owner?'':' <small>(seul Fabien peut valider)</small>')+'</span></div>';
  h+='<h2><span class="dot" style="background:#4f8dff"></span>Lilou</h2>';
  h+=occ("🎄","Noël 2026","Chez Maman et Chez Papa",O+"/liste-noel-lilou/","🎄 La liste de cadeaux de Lilou est prête ! Tu peux réserver un cadeau ici :",owner?"/liste-noel-lilou/":"");
  h+=occ("🎂","9 ans · 11 juin 2027","Liste à créer");
@@ -113,7 +146,7 @@ function paint(){
  document.querySelectorAll("[data-acc]").forEach(b=>b.onclick=()=>accept(b.dataset.acc,b.dataset.l,b));
  document.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>refuse(b.dataset.del,b));
  $("addb").onclick=()=>{$("sh").style.display="flex"};
- const au=$("au");au.textContent=owner?"✓ Connecté":"🔐 Connexion";au.className="auth"+(owner?" on":"")}
+ $("who").textContent=owner?"Gestion complète":"Lecture et idées de Didi";$("au").className="auth"+(owner?" on":"")}
 async function accept(id,list,b){const w=extras.map(pend).filter(Boolean).find(x=>x.id===id);if(!w||!FB||!owner)return;
  b.disabled=true;const p=parseFloat(String(w.p).replace(",",".").replace(/[^\d.]/g,""));
  const d={n:w.n,p:isNaN(p)?null:p,from:w.kid,s:(CT[w.c]?CT[w.c]+" · ":"")+"Idée de "+(KIDS[w.kid]||w.kid),u:w.l||"",list:list};if(w.i)d.img=w.i;
@@ -128,20 +161,18 @@ $("ok").onclick=()=>{const n=$("n").value.trim();let l=$("l").value.trim();const
  const go=async img=>{try{await FB.add("extras",{name:"souhait:didi",gift:n,url:JSON.stringify({l:l,i:img||"",p:p,c:"envie"}),at:Date.now()});
   $("n").value="";$("l").value="";$("p").value="";$("f").value="";$("sh").style.display="none"}catch(e){alert("Oups, ça n’a pas marché. Réessaie.")}b.disabled=false};
  if(f)shrink(f,380,0.78,go);else go("")};
-$("au").onclick=async()=>{if(!FB){alert("Connexion indisponible pour le moment.");return}
- if(owner){if(confirm("Te déconnecter ?"))FB.signOut();return}
- try{await FB.signIn()}catch(e){alert("Connexion impossible. Réessaie.")}};
+const doIn=async()=>{if(!FB){$("lh").textContent="Chargement… réessaie dans un instant.";return}
+ try{await FB.signIn()}catch(e){$("lh").textContent="Connexion impossible. Réessaie."}};
+$("lg").onclick=doIn;
+$("au").onclick=()=>{if(FB&&confirm("Te déconnecter ?"))FB.signOut()};
 let DP=null;window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();DP=e});
-try{const c=document.createElement("canvas");c.width=c.height=180;const x=c.getContext("2d");const gr=x.createLinearGradient(0,0,180,180);gr.addColorStop(0,"#4f8dff");gr.addColorStop(1,"#9b7bff");x.fillStyle=gr;x.fillRect(0,0,180,180);x.fillStyle="#fff";x.beginPath();x.moveTo(90,34);x.lineTo(148,82);x.lineTo(148,142);x.lineTo(32,142);x.lineTo(32,82);x.closePath();x.fill();x.fillStyle="#ff5fa2";x.beginPath();x.moveTo(90,130);x.bezierCurveTo(58,110,52,92,62,82);x.bezierCurveTo(70,74,84,78,90,88);x.bezierCurveTo(96,78,110,74,118,82);x.bezierCurveTo(128,92,122,110,90,130);x.fill();
-const l=document.createElement("link");l.rel="apple-touch-icon";l.href=c.toDataURL("image/png");document.head.appendChild(l)}catch(e){}
-if(!(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)&&!navigator.standalone){
-const ib=document.createElement("button");ib.textContent="📲 Installer l’appli";
-ib.style.cssText="position:fixed;right:14px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:9000;border:0;border-radius:22px;padding:13px 18px;font-size:15px;font-weight:800;color:#fff;background:linear-gradient(135deg,#4f8dff,#9b7bff);box-shadow:0 6px 18px rgba(80,90,180,.35);cursor:pointer";
-ib.onclick=async()=>{
+const standalone=(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||navigator.standalone;
+if(standalone)$("li").style.display="none";
+$("li").onclick=async()=>{
  if(DP){DP.prompt();try{await DP.userChoice}catch(e){}DP=null;return}
  const ios=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
  alert(ios?"Pour installer :\n1) Appuie sur Partager (le carré avec la flèche)\n2) Choisis « Sur l’écran d’accueil »\n3) Ajouter":"Pour installer :\n1) Appuie sur les 3 points ⋮ en haut à droite de Chrome\n2) Choisis « Installer l’application » ou « Ajouter à l’écran d’accueil »\n3) Confirme")};
-document.body.appendChild(ib)}
+try{const im=new Image();im.onload=()=>{try{const c=document.createElement("canvas");c.width=c.height=180;c.getContext("2d").drawImage(im,0,0,180,180);const l=document.createElement("link");l.rel="apple-touch-icon";l.href=c.toDataURL("image/png");document.head.appendChild(l)}catch(e){}};im.src="icon-parents.svg"}catch(e){}
 paint();
 </script>
 </body>
