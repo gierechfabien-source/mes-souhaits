@@ -189,6 +189,7 @@ function paint(){
   h+='<h2><span class="dot" style="background:'+esc(c.c)+'"></span>'+(c.prof?esc(c.e)+" ":"")+esc(KIDS[kid])+(owner&&c.prof?'<button class="xx ep" data-ep="'+esc(kid)+'">✏️</button>':'')+'</h2>';
   const L=cardsOf(kid);L.forEach(o=>{h+=cardHtml(o)});
   if(!L.length)h+='<p class="empty">Pas encore de liste'+(owner?' — crée la première ci-dessous':'')+'</p>';
+  if(kid==="lilou")h+=occ("📲","L’appli de Lilou","Sa nouvelle appli : anniversaires et prochains Noëls",O+"/mes-souhaits/lilou.html","🎁 Voici l’appli de Lilou avec ses listes de cadeaux :");
   if(kid==="mahily")h+=occ("📲","L’appli de Mahily","Son espace à elle, avec ses listes",O+"/mes-souhaits/mahily.html","🎁 Voici l’appli de Mahily avec ses listes de cadeaux :");
   if(owner)h+='<button class="add" data-new="'+esc(kid)+'">＋ Nouvelle occasion pour '+esc(KIDS[kid])+'</button>';
   h+='<button class="add idea" data-idea="'+esc(kid)+'">💡 Proposer une idée pour '+esc(KIDS[kid])+'</button>'};
