@@ -57,3 +57,5 @@ if(!stand){const b=document.createElement("button");b.id="inst";b.textContent="�
 try{const im=new Image();im.onload=()=>{try{const c=document.createElement("canvas");c.width=c.height=512;c.getContext("2d").drawImage(im,0,0,512,512);const l=document.createElement("link");l.rel="apple-touch-icon";l.href=c.toDataURL("image/png");document.head.appendChild(l)}catch(e){}};im.src=T.icon}catch(e){}
 paint();
 })();
+
+;(()=>{const APPVER="3 · 15/11 11:15";const f=document.createElement("div");f.id="appver";f.style.cssText="text-align:center;font:12px system-ui,sans-serif;opacity:.6;padding:18px 0 110px;cursor:pointer";f.textContent="Version "+APPVER+" · toucher pour actualiser";f.onclick=async()=>{f.textContent="Actualisation…";try{for(const r of await navigator.serviceWorker.getRegistrations())await r.update();for(const k of await caches.keys())await caches.delete(k)}catch(e){}location.reload()};document.body.appendChild(f)})();
