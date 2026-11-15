@@ -111,10 +111,11 @@ const FBC={"apiKey":"AIzaSyBYNEjVg4wrSLJRo6wMXl_Hd9lb2JDeHO0","authDomain":"list
 const A=await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js");
 const F=await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js");
 const U=await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js");
-const app=A.initializeApp(FBC);const fs=F.getFirestore(app);const au=U.getAuth(app);
+const app=A.initializeApp(FBC);const fs=F.initializeFirestore(app,{experimentalAutoDetectLongPolling:true});const au=U.getAuth(app);
 const prov=new U.GoogleAuthProvider();
 FB={add:(c,d)=>F.addDoc(F.collection(fs,c),d),set:(c,id,d,m)=>m?F.setDoc(F.doc(fs,c,id),d,{merge:true}):F.setDoc(F.doc(fs,c,id),d),del:(c,id)=>F.deleteDoc(F.doc(fs,c,id)),
  signIn:async()=>{try{await U.signInWithPopup(au,prov)}catch(e){await U.signInWithRedirect(au,prov)}},signOut:()=>U.signOut(au)};
+{const _w=p=>Promise.race([p,new Promise((_,r)=>setTimeout(()=>r(new Error("timeout")),15000))]);["add","set","del"].forEach(k=>{const o=FB[k];FB[k]=(...a)=>_w(o(...a))})}
 U.onAuthStateChanged(au,u=>{user=u||null;owner=!!(u&&u.emailVerified&&OWN.includes(hh(String(u.email||"").toLowerCase())));paint()});
 F.onSnapshot(F.collection(fs,"extras"),s=>{extras=s.docs.map(d=>Object.assign({id:d.id},d.data()));paint()});
 F.onSnapshot(F.collection(fs,"items"),s=>{items=s.docs.map(d=>Object.assign({id:d.id},d.data()));paint()});
@@ -327,7 +328,7 @@ $("ok").onclick=()=>{const n=$("n").value.trim();let l=$("l").value.trim();const
   if(c.mode==="idea")await FB.add("extras",{name:"souhait:"+c.kid,gift:n,url:JSON.stringify({l:l,i:img||"",p:p,c:"envie"}),at:Date.now()});
   else if(c.mode==="add"){const d={occ:c.oid,n:n,p:num(p),u:l,at:Date.now()};if(img)d.img=img;await FB.set("items","g"+Date.now(),d)}
   else{const d={n:n,p:num(p),u:l};if(img)d.img=img;await FB.set("items",c.g.id,d,true)}
-  $("sh").style.display="none"}catch(e){alert("Oups, ça n’a pas marché. Réessaie.")}b.disabled=false};
+  $("sh").style.display="none"}catch(e){alert(e&&e.message==="timeout"?"Pas de réponse du serveur. Ne refais pas la saisie : elle s’enregistrera dès que la connexion revient.":"Oups, ça n’a pas marché ("+((e&&e.code)||(e&&e.message)||"erreur")+")")}b.disabled=false};
  if(f)shrink(f,380,0.78,go);else go("")};
 const doIn=async()=>{if(!FB){$("lh").textContent="Chargement… réessaie dans un instant.";return}
  try{await FB.signIn()}catch(e){$("lh").textContent="Connexion impossible. Réessaie."}};
@@ -343,7 +344,7 @@ $("li").onclick=async()=>{
 try{const im=new Image();im.onload=()=>{try{const c=document.createElement("canvas");c.width=c.height=512;c.getContext("2d").drawImage(im,0,0,512,512);const l=document.createElement("link");l.rel="apple-touch-icon";l.href=c.toDataURL("image/png");document.head.appendChild(l)}catch(e){}};im.src="icon-parents.svg"}catch(e){}
 paint();
 </script>
-<script>(()=>{const APPVER="6 · 15/11 11:45";try{if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js")}catch(e){}const f=document.createElement("div");f.style.cssText="text-align:center;font:12px system-ui,sans-serif;opacity:.6;padding:18px 0 40px;cursor:pointer;color:inherit";f.textContent="Version "+APPVER+" · toucher pour actualiser";f.onclick=async()=>{f.textContent="Actualisation…";try{for(const r of await navigator.serviceWorker.getRegistrations())await r.update();for(const k of await caches.keys())await caches.delete(k)}catch(e){}location.reload()};document.body.appendChild(f)})();</script>
+<script>(()=>{const APPVER="7 · 15/11 12:05";try{if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js")}catch(e){}const f=document.createElement("div");f.style.cssText="text-align:center;font:12px system-ui,sans-serif;opacity:.6;padding:18px 0 40px;cursor:pointer;color:inherit";f.textContent="Version "+APPVER+" · toucher pour actualiser";f.onclick=async()=>{f.textContent="Actualisation…";try{for(const r of await navigator.serviceWorker.getRegistrations())await r.update();for(const k of await caches.keys())await caches.delete(k)}catch(e){}location.reload()};document.body.appendChild(f)})();</script>
 <script>(()=>{/*APPBACK*/const ids=["sm","sx","sh"].map(i=>document.getElementById(i)).filter(Boolean);const vis=e=>getComputedStyle(e).display!=="none";const cnt=()=>ids.filter(vis).length;let n=0,skip=0;const sync=()=>{const c=cnt();while(n<c){history.pushState({ov:1},"");n++}while(n>c){n--;skip++;history.back()}};const mo=new MutationObserver(sync);ids.forEach(e=>mo.observe(e,{attributes:true,attributeFilter:["style","class"]}));addEventListener("popstate",()=>{if(skip>0){skip--;return}if(cnt()>0){const top=[...ids].reverse().find(vis);n=Math.max(0,n-1);if(top.id==="sm"){const x=document.getElementById("mx");if(x)x.click()}top.style.display="none"}})})();</script>
 </body>
 </html>
